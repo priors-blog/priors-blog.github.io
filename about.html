@@ -75,6 +75,103 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+<style>
+/* Shared by the site (include-in-header) and the draft preview (map/scripts/07_build_pilot_preview.py). */
+/* ---- blog-drawn illustrations and charts (figures/figlib.py) ---- */
+.ill{margin:2rem 0 1.9rem}
+.ill-panels{display:flex;flex-wrap:wrap;gap:1.1rem 1.4rem;justify-content:center;align-items:flex-start}
+.ill-panel{flex:1 1 300px;max-width:430px;min-width:0}
+.ill-panel.single{flex-basis:100%;max-width:580px}
+.ill svg{display:block;width:100%;height:auto;font-family:inherit;font-variant-numeric:tabular-nums;overflow:visible}
+.ill-sub{margin:.45rem 0 0;font-size:.86rem;line-height:1.5;color:#4b5363;text-align:center;text-wrap:balance}
+.ill-sub b{color:#1f2533}
+.ill figcaption{margin-top:1rem;font-size:.86rem;line-height:1.65;color:#666663}
+.ill figcaption b{color:#111111}
+/* paper figures placed as Markdown images */
+figure.figure img,.content figure img{border-radius:2px}
+/* ---- the original paper under the title and subtitle ---- */
+.paper-line{margin:.7rem 0 0;font-size:.95rem;line-height:1.5;color:#666663}
+.paper-line a{color:#3d3d3d;font-style:italic;text-decoration:underline;text-decoration-color:#c9cfdb;text-underline-offset:3px}
+.paper-line a:hover{text-decoration-color:#111111}
+.paper-line .paper-venue{display:block;margin-top:.1rem;color:#8c8c89}
+/* wide display equations scroll inside their own box instead of widening the page on phones */
+mjx-container[display="true"]{display:block;overflow-x:auto;overflow-y:hidden;max-width:100%;padding:.2rem 0}
+/* ---- comprehension check: one question per .quiz-q, options as an ordered list ---- */
+.quiz-q{margin:1.1rem 0 1.3rem;padding:1rem 1.1rem 1.05rem;border:1px solid #d2d2ce;background:#fafaf8}
+.quiz-q > p:first-child{margin:0 0 .75rem;color:#111111}
+.quiz-opts{display:grid;gap:.45rem}
+.quiz-opt{display:flex;gap:.7rem;align-items:flex-start;width:100%;text-align:left;font:inherit;font-size:.97rem;
+  line-height:1.55;color:#3d3d3d;background:#ffffff;border:1px solid #d2d2ce;padding:.55rem .75rem;cursor:pointer}
+.quiz-opt:hover:not(:disabled){border-color:#111111}
+.quiz-opt:focus-visible,.quiz-reveal:focus-visible{outline:2px solid #2f6fe4;outline-offset:2px}
+.quiz-opt:disabled{cursor:default}
+.quiz-mark{flex:none;width:1.55rem;height:1.55rem;border-radius:50%;border:1px solid #b5b5b5;display:inline-grid;
+  place-items:center;font-size:.8rem;font-variant-numeric:tabular-nums;color:#666663;margin-top:.05rem}
+.quiz-opt.is-wrong{border-color:#e5533d;background:#fdf1ee;color:#6b3a31}
+.quiz-opt.is-wrong .quiz-mark{background:#e5533d;border-color:#e5533d;color:#ffffff}
+.quiz-opt.is-right{border-color:#12876f;background:#eaf6f2;color:#1b3d35}
+.quiz-opt.is-right .quiz-mark{background:#12876f;border-color:#12876f;color:#ffffff}
+.quiz-feedback{margin:.65rem 0 0;font-size:.9rem;color:#3d3d3d;min-height:1.3em}
+.quiz-reveal{font:inherit;font-size:.86rem;background:none;border:0;padding:0;margin:.2rem 0 0;color:#5a6272;
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.quiz-live .quiz-why{display:none}
+.quiz-live.is-solved .quiz-why{display:block}
+.quiz-why{margin-top:.75rem;padding-top:.75rem;border-top:1px dashed #c9cfdb;font-size:.95rem}
+.quiz-why > :last-child{margin-bottom:0}
+@media (prefers-reduced-motion:no-preference){.quiz-opt{transition:background-color .15s,border-color .15s}}
+</style>
+<script>
+/* Turns each .quiz-q (data-answer = number of the right option) into clickable choices.
+   Without scripts the question, the options and the explanation simply stay visible. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.quiz-q').forEach(function (q) {
+    var answer = parseInt(q.getAttribute('data-answer') || q.getAttribute('answer'), 10);
+    var list = null;
+    for (var i = 0; i < q.children.length; i++) { if (q.children[i].tagName === 'OL') { list = q.children[i]; break; } }
+    if (!list || !answer) return;
+    q.classList.add('quiz-live');
+    var group = document.createElement('div');
+    group.className = 'quiz-opts';
+    group.setAttribute('role', 'group');
+    var feedback = document.createElement('p');
+    feedback.className = 'quiz-feedback';
+    feedback.setAttribute('aria-live', 'polite');
+    var reveal = document.createElement('button');
+    reveal.type = 'button';
+    reveal.className = 'quiz-reveal';
+    reveal.textContent = '정답과 풀이 보기';
+    var buttons = [];
+    function solve() {
+      q.classList.add('is-solved');
+      buttons[answer - 1].classList.add('is-right');
+      buttons.forEach(function (b) { b.disabled = true; });
+      reveal.remove();
+    }
+    Array.prototype.forEach.call(list.children, function (li, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'quiz-opt';
+      var mark = document.createElement('span');
+      mark.className = 'quiz-mark';
+      mark.textContent = String(i + 1);
+      var body = document.createElement('span');
+      body.innerHTML = li.innerHTML;
+      b.appendChild(mark);
+      b.appendChild(body);
+      b.addEventListener('click', function () {
+        if (i + 1 === answer) { feedback.textContent = '정답입니다.'; solve(); }
+        else { b.classList.add('is-wrong'); b.disabled = true; feedback.textContent = '다시 골라 보세요.'; }
+      });
+      buttons.push(b);
+      group.appendChild(b);
+    });
+    list.replaceWith(group);
+    group.after(feedback);
+    feedback.after(reveal);
+    reveal.addEventListener('click', function () { feedback.textContent = ''; solve(); });
+  });
+});
+</script>
 
 
 <meta property="og:title" content="소개 – Priors">
@@ -129,6 +226,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">소개</h1>
@@ -163,10 +261,6 @@ ul.task-list li input[type="checkbox"] {
 <li>화요일과 금요일에는 사이언스 브릿지를 더합니다. 최상위 과학 저널에 실린 논문을 머신러닝 연구자의 눈으로 읽는 코너입니다.</li>
 <li>일요일에는 한 주를 정리합니다.</li>
 </ul>
-</section>
-<section id="글을-쓰는-방식" class="level2">
-<h2 class="anchored" data-anchor-id="글을-쓰는-방식">글을 쓰는 방식</h2>
-<p>초안과 사실 확인은 Claude와 함께 하고, 원문을 직접 읽으며 다듬어 올립니다. 에디터 코멘트가 붙지 않은 글은 올리지 않습니다. 논문 그림은 CC BY 라이선스일 때만 출처를 밝혀 싣고, 나머지는 핵심 도식을 직접 다시 그립니다.</p>
 
 
 </section>
