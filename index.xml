@@ -8,8 +8,8 @@
 <title>Priors</title>
 <link>https://priors-blog.github.io/</link>
 <atom:link href="https://priors-blog.github.io/index.xml" rel="self" type="application/rss+xml"/>
-<description>탑티어 AI/ML 논문과 최상위 과학 저널 논문을 연구 가치 중심으로 읽고, 다음 연구 질문을 찾는 블로그</description>
+<description>AI와 머신러닝 최상위 학회 논문, 그리고 Nature, Science, Cell 논문을 골라 읽고 그 논문이 남긴 질문을 적는 블로그</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Wed, 23 Sep 2026 10:32:14 GMT</lastBuildDate>
+<lastBuildDate>Wed, 23 Sep 2026 10:46:07 GMT</lastBuildDate>
 </channel>
 </rss>
