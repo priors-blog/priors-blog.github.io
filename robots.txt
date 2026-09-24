@@ -1,1 +1,4 @@
+User-agent: *
+Allow: /
+
 Sitemap: https://priors-blog.github.io/sitemap.xml
