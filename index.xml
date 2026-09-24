@@ -13,6 +13,8 @@
 <url>https://priors-blog.github.io/images/share.png</url>
 <title>Priors</title>
 <link>https://priors-blog.github.io/</link>
+<height>76</height>
+<width>144</width>
 </image>
 <generator>quarto-1.10.18</generator>
 <lastBuildDate>Wed, 23 Sep 2026 15:00:00 GMT</lastBuildDate>
@@ -443,6 +445,7 @@
   <category>학회 동향</category>
   <guid>https://priors-blog.github.io/posts/2026-09-24-research-room-map.html</guid>
   <pubDate>Wed, 23 Sep 2026 15:00:00 GMT</pubDate>
+  <media:content url="https://priors-blog.github.io/posts/figs/2026-09-24-research-room-map-share.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>
 </rss>
