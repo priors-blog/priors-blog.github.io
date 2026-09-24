@@ -9,6 +9,11 @@
 <link>https://priors-blog.github.io/</link>
 <atom:link href="https://priors-blog.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>AI와 머신러닝을 중심으로, 연구로서 의미가 큰 논문을 골라 읽고 그 논문이 남긴 질문을 적는 블로그입니다.</description>
+<image>
+<url>https://priors-blog.github.io/images/share.png</url>
+<title>Priors</title>
+<link>https://priors-blog.github.io/</link>
+</image>
 <generator>quarto-1.10.18</generator>
 <lastBuildDate>Wed, 23 Sep 2026 15:00:00 GMT</lastBuildDate>
 <item>
