@@ -85,9 +85,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -283,7 +283,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">분류</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">전체 <span class="quarto-category-count">(0)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">분류</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">전체 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUVDJTk3JUIwJUVBJUI1JUFDJTIwJUVDJTk3JUFDJUVDJUE3JTgwJTIwJUVDJUE3JTgwJUVCJThGJTg0">연구 여지 지도 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUVEJTk1JTk5JUVEJTlBJThDJTIwJUVCJThGJTk5JUVEJTk2JUE1">학회 동향 <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -320,7 +320,38 @@ window.Quarto = {
     </div>
 </div>
 <div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="JUVDJTk3JUIwJUVBJUI1JUFDJTIwJUVDJTk3JUFDJUVDJUE3JTgwJTIwJUVDJUE3JTgwJUVCJThGJTg0JTJDJUVEJTk1JTk5JUVEJTlBJThDJTIwJUVCJThGJTk5JUVEJTk2JUE1" data-listing-date-sort="1790175600000" data-listing-file-modified-sort="1790234304511" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1790">
+<div class="thumbnail"><a href="./posts/2026-09-24-research-room-map.html" class="no-external">
 
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2026-09-24-research-room-map.html" class="no-external">LLM 논문이 절반에 가까워진 학회에서, 연구할 틈은 어디에 남았을까</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2026-09-24-research-room-map.html" class="no-external">ICLR, ICML, NeurIPS 5년치 논문 7만 8,679편으로 그린 연구 여지 지도 (2026년 9월판)</a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('JUVDJTk3JUIwJUVBJUI1JUFDJTIwJUVDJTk3JUFDJUVDJUE3JTgwJTIwJUVDJUE3JTgwJUVCJThGJTg0'); return false;">연구 여지 지도</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('JUVEJTk1JTk5JUVEJTlBJThDJTIwJUVCJThGJTk5JUVEJTk2JUE1'); return false;">학회 동향</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/2026-09-24-research-room-map.html" class="no-external">
+<p>세 학회의 2022~2026년 논문을 150개 주제로 묶고 성장, 리뷰어 평가, 미해결 문제, 진입 장벽, 혼잡도로 연구 여지를 매겼다. LLM 중심 주제를 뺀 109개 주제 가운데 1위는 MCMC와 신경 샘플러다.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2026-09-24-research-room-map.html" class="no-external">
+<div class="listing-date">
+2026년 9월 24일
+</div>
+</a>
+</div>
+</div>
 </div>
 <div class="listing-no-matching d-none">일치 없음</div>
 </div></main> <!-- /main -->

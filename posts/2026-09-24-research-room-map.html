@@ -1,23 +1,297 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
-      xmlns:media="http://search.yahoo.com/mrss/" 
-      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
-      xmlns:dc="http://purl.org/dc/elements/1.1/" 
-      version="2.0">
-<channel>
-<title>Priors</title>
-<link>https://priors-blog.github.io/</link>
-<atom:link href="https://priors-blog.github.io/index.xml" rel="self" type="application/rss+xml"/>
-<description>AI와 머신러닝을 중심으로, 연구로서 의미가 큰 논문을 골라 읽고 그 논문이 남긴 질문을 적는 블로그입니다.</description>
-<generator>quarto-1.10.18</generator>
-<lastBuildDate>Wed, 23 Sep 2026 15:00:00 GMT</lastBuildDate>
-<item>
-  <title>LLM 논문이 절반에 가까워진 학회에서, 연구할 틈은 어디에 남았을까</title>
-  <link>https://priors-blog.github.io/posts/2026-09-24-research-room-map.html</link>
-  <description><![CDATA[ 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="세 학회의 2022~2026년 논문을 150개 주제로 묶고 성장, 리뷰어 평가, 미해결 문제, 진입 장벽, 혼잡도로 연구 여지를 매겼다. LLM 중심 주제를 뺀 109개 주제 가운데 1위는 MCMC와 신경 샘플러다.">
+
+<title>LLM 논문이 절반에 가까워진 학회에서, 연구할 틈은 어디에 남았을까 – Priors</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-faf3c5190ed302904896a81471897cd1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+<style>
+/* Shared by the site (include-in-header) and the draft preview (map/scripts/07_build_pilot_preview.py). */
+/* ---- blog-drawn illustrations and charts (figures/figlib.py) ---- */
+.ill{margin:2rem 0 1.9rem}
+.ill-panels{display:flex;flex-wrap:wrap;gap:1.1rem 1.4rem;justify-content:center;align-items:flex-start}
+.ill-panel{flex:1 1 300px;max-width:430px;min-width:0}
+.ill-panel.single{flex-basis:100%;max-width:580px}
+.ill svg{display:block;width:100%;height:auto;font-family:inherit;font-variant-numeric:tabular-nums;overflow:visible}
+.ill-sub{margin:.45rem 0 0;font-size:.86rem;line-height:1.5;color:#4b5363;text-align:center;text-wrap:balance}
+.ill-sub b{color:#1f2533}
+.ill figcaption{margin-top:1rem;font-size:.86rem;line-height:1.65;color:#666663}
+.ill figcaption b{color:#111111}
+/* paper figures placed as Markdown images */
+figure.figure img,.content figure img{border-radius:2px}
+/* ---- the original paper under the title and subtitle ---- */
+.paper-line{margin:.7rem 0 0;font-size:.95rem;line-height:1.5;color:#666663}
+.paper-line a{color:#3d3d3d;font-style:italic;text-decoration:underline;text-decoration-color:#c9cfdb;text-underline-offset:3px}
+.paper-line a:hover{text-decoration-color:#111111}
+.paper-line .paper-venue{display:block;margin-top:.1rem;color:#8c8c89}
+/* wide display equations scroll inside their own box instead of widening the page on phones */
+mjx-container[display="true"]{display:block;overflow-x:auto;overflow-y:hidden;max-width:100%;padding:.2rem 0}
+/* ---- comprehension check: one question per .quiz-q, options as an ordered list ---- */
+.quiz-q{margin:1.1rem 0 1.3rem;padding:1rem 1.1rem 1.05rem;border:1px solid #d2d2ce;background:#fafaf8}
+.quiz-q > p:first-child{margin:0 0 .75rem;color:#111111}
+.quiz-opts{display:grid;gap:.45rem}
+.quiz-opt{display:flex;gap:.7rem;align-items:flex-start;width:100%;text-align:left;font:inherit;font-size:.97rem;
+  line-height:1.55;color:#3d3d3d;background:#ffffff;border:1px solid #d2d2ce;padding:.55rem .75rem;cursor:pointer}
+.quiz-opt:hover:not(:disabled){border-color:#111111}
+.quiz-opt:focus-visible,.quiz-reveal:focus-visible{outline:2px solid #2f6fe4;outline-offset:2px}
+.quiz-opt:disabled{cursor:default}
+.quiz-mark{flex:none;width:1.55rem;height:1.55rem;border-radius:50%;border:1px solid #b5b5b5;display:inline-grid;
+  place-items:center;font-size:.8rem;font-variant-numeric:tabular-nums;color:#666663;margin-top:.05rem}
+.quiz-opt.is-wrong{border-color:#e5533d;background:#fdf1ee;color:#6b3a31}
+.quiz-opt.is-wrong .quiz-mark{background:#e5533d;border-color:#e5533d;color:#ffffff}
+.quiz-opt.is-right{border-color:#12876f;background:#eaf6f2;color:#1b3d35}
+.quiz-opt.is-right .quiz-mark{background:#12876f;border-color:#12876f;color:#ffffff}
+.quiz-feedback{margin:.65rem 0 0;font-size:.9rem;color:#3d3d3d;min-height:1.3em}
+.quiz-reveal{font:inherit;font-size:.86rem;background:none;border:0;padding:0;margin:.2rem 0 0;color:#5a6272;
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.quiz-live .quiz-why{display:none}
+.quiz-live.is-solved .quiz-why{display:block}
+.quiz-why{margin-top:.75rem;padding-top:.75rem;border-top:1px dashed #c9cfdb;font-size:.95rem}
+.quiz-why > :last-child{margin-bottom:0}
+@media (prefers-reduced-motion:no-preference){.quiz-opt{transition:background-color .15s,border-color .15s}}
+</style>
+<script>
+/* Turns each .quiz-q (data-answer = number of the right option) into clickable choices.
+   Without scripts the question, the options and the explanation simply stay visible. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.quiz-q').forEach(function (q) {
+    var answer = parseInt(q.getAttribute('data-answer') || q.getAttribute('answer'), 10);
+    var list = null;
+    for (var i = 0; i < q.children.length; i++) { if (q.children[i].tagName === 'OL') { list = q.children[i]; break; } }
+    if (!list || !answer) return;
+    q.classList.add('quiz-live');
+    var group = document.createElement('div');
+    group.className = 'quiz-opts';
+    group.setAttribute('role', 'group');
+    var feedback = document.createElement('p');
+    feedback.className = 'quiz-feedback';
+    feedback.setAttribute('aria-live', 'polite');
+    var reveal = document.createElement('button');
+    reveal.type = 'button';
+    reveal.className = 'quiz-reveal';
+    reveal.textContent = '정답과 풀이 보기';
+    var buttons = [];
+    function solve() {
+      q.classList.add('is-solved');
+      buttons[answer - 1].classList.add('is-right');
+      buttons.forEach(function (b) { b.disabled = true; });
+      reveal.remove();
+    }
+    Array.prototype.forEach.call(list.children, function (li, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'quiz-opt';
+      var mark = document.createElement('span');
+      mark.className = 'quiz-mark';
+      mark.textContent = String(i + 1);
+      var body = document.createElement('span');
+      body.innerHTML = li.innerHTML;
+      b.appendChild(mark);
+      b.appendChild(body);
+      b.addEventListener('click', function () {
+        if (i + 1 === answer) { feedback.textContent = '정답입니다.'; solve(); }
+        else { b.classList.add('is-wrong'); b.disabled = true; feedback.textContent = '다시 골라 보세요.'; }
+      });
+      buttons.push(b);
+      group.appendChild(b);
+    });
+    list.replaceWith(group);
+    group.after(feedback);
+    feedback.after(reveal);
+    reveal.addEventListener('click', function () { feedback.textContent = ''; solve(); });
+  });
+});
+</script>
+
+
+<meta property="og:title" content="LLM 논문이 절반에 가까워진 학회에서, 연구할 틈은 어디에 남았을까 – Priors">
+<meta property="og:description" content="세 학회의 2022~2026년 논문을 150개 주제로 묶고 성장, 리뷰어 평가, 미해결 문제, 진입 장벽, 혼잡도로 연구 여지를 매겼다. LLM 중심 주제를 뺀 109개 주제 가운데 1위는 MCMC와 신경 샘플러다.">
+<meta property="og:site_name" content="Priors">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Priors</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">글</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">소개</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#한눈에" id="toc-한눈에" class="nav-link active" data-scroll-target="#한눈에">한눈에</a></li>
+  <li><a href="#왜-이-지도를-그렸나" id="toc-왜-이-지도를-그렸나" class="nav-link" data-scroll-target="#왜-이-지도를-그렸나">왜 이 지도를 그렸나</a></li>
+  <li><a href="#데이터와-방법" id="toc-데이터와-방법" class="nav-link" data-scroll-target="#데이터와-방법">데이터와 방법</a>
+  <ul class="collapse">
+  <li><a href="#자료" id="toc-자료" class="nav-link" data-scroll-target="#자료">자료</a></li>
+  <li><a href="#주제-묶기" id="toc-주제-묶기" class="nav-link" data-scroll-target="#주제-묶기">주제 묶기</a></li>
+  <li><a href="#여지-점수" id="toc-여지-점수" class="nav-link" data-scroll-target="#여지-점수">여지 점수</a></li>
+  </ul></li>
+  <li><a href="#흐름-채택작-두-편-중-한-편-가까이가-llm" id="toc-흐름-채택작-두-편-중-한-편-가까이가-llm" class="nav-link" data-scroll-target="#흐름-채택작-두-편-중-한-편-가까이가-llm">흐름: 채택작 두 편 중 한 편 가까이가 LLM</a></li>
+  <li><a href="#지도" id="toc-지도" class="nav-link" data-scroll-target="#지도">지도</a></li>
+  <li><a href="#상위-주제" id="toc-상위-주제" class="nav-link" data-scroll-target="#상위-주제">상위 주제</a>
+  <ul class="collapse">
+  <li><a href="#위-가중치를-흔들어도-남는-곳" id="toc-위-가중치를-흔들어도-남는-곳" class="nav-link" data-scroll-target="#위-가중치를-흔들어도-남는-곳">1~5위: 가중치를 흔들어도 남는 곳</a></li>
+  <li><a href="#위-무엇을-중시하느냐에-따라-바뀌는-곳" id="toc-위-무엇을-중시하느냐에-따라-바뀌는-곳" class="nav-link" data-scroll-target="#위-무엇을-중시하느냐에-따라-바뀌는-곳">6~10위: 무엇을 중시하느냐에 따라 바뀌는 곳</a></li>
+  <li><a href="#여지가-작은-곳" id="toc-여지가-작은-곳" class="nav-link" data-scroll-target="#여지가-작은-곳">여지가 작은 곳</a></li>
+  </ul></li>
+  <li><a href="#이-지도를-얼마나-믿을까" id="toc-이-지도를-얼마나-믿을까" class="nav-link" data-scroll-target="#이-지도를-얼마나-믿을까">이 지도를 얼마나 믿을까</a>
+  <ul class="collapse">
+  <li><a href="#가중치를-흔들어-보기" id="toc-가중치를-흔들어-보기" class="nav-link" data-scroll-target="#가중치를-흔들어-보기">가중치를 흔들어 보기</a></li>
+  <li><a href="#한계" id="toc-한계" class="nav-link" data-scroll-target="#한계">한계</a></li>
+  </ul></li>
+  <li><a href="#블로그는-이-지도를-이렇게-쓴다" id="toc-블로그는-이-지도를-이렇게-쓴다" class="nav-link" data-scroll-target="#블로그는-이-지도를-이렇게-쓴다">블로그는 이 지도를 이렇게 쓴다</a></li>
+  <li><a href="#열린-질문" id="toc-열린-질문" class="nav-link" data-scroll-target="#열린-질문">열린 질문</a></li>
+  <li><a href="#자료와-재현" id="toc-자료와-재현" class="nav-link" data-scroll-target="#자료와-재현">자료와 재현</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
 
 <!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LLM 논문이 절반에 가까워진 학회에서, 연구할 틈은 어디에 남았을까</h1>
+<p class="subtitle lead">ICLR, ICML, NeurIPS 5년치 논문 7만 8,679편으로 그린 연구 여지 지도 (2026년 9월판)</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">연구 여지 지도</div>
+    <div class="quarto-category">학회 동향</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    세 학회의 2022~2026년 논문을 150개 주제로 묶고 성장, 리뷰어 평가, 미해결 문제, 진입 장벽, 혼잡도로 연구 여지를 매겼다. LLM 중심 주제를 뺀 109개 주제 가운데 1위는 MCMC와 신경 샘플러다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 9월 24일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <style>
@@ -152,14 +426,14 @@
 </section>
 <section id="흐름-채택작-두-편-중-한-편-가까이가-llm" class="level2">
 <h2 class="anchored" data-anchor-id="흐름-채택작-두-편-중-한-편-가까이가-llm">흐름: 채택작 두 편 중 한 편 가까이가 LLM</h2>
-<figure class="rrm-fig figure"><svg class="rrm-desk" viewbox="0 0 680 300" aria-label="LLM 관련 논문 비중: 채택작 3.9%에서 45.2%로, ICLR 투고작 4.2%에서 46.8%로"><line class="rrm-gl" x1="44" y1="220.8" x2="538" y2="220.8"></line><line class="rrm-gl" x1="44" y1="175.6" x2="538" y2="175.6"></line><line class="rrm-gl" x1="44" y1="130.4" x2="538" y2="130.4"></line><line class="rrm-gl" x1="44" y1="85.2" x2="538" y2="85.2"></line><line class="rrm-gl" x1="44" y1="40.0" x2="538" y2="40.0"></line><text class="rrm-ax" x="36" y="270.5" text-anchor="end">0</text><text class="rrm-ax" x="36" y="225.3" text-anchor="end">10</text><text class="rrm-ax" x="36" y="180.1" text-anchor="end">20</text><text class="rrm-ax" x="36" y="134.9" text-anchor="end">30</text><text class="rrm-ax" x="36" y="89.7" text-anchor="end">40</text><text class="rrm-ax" x="36" y="44.5" text-anchor="end">50</text><text class="rrm-ax" x="36" y="28" text-anchor="end">%</text><line class="rrm-bl" x1="44" y1="266.0" x2="538" y2="266.0"></line><text class="rrm-ax" x="44.0" y="292" text-anchor="middle">2022</text><text class="rrm-ax" x="165.5" y="292" text-anchor="middle">2023</text><text class="rrm-ax" x="287.0" y="292" text-anchor="middle">2024</text><text class="rrm-ax" x="408.5" y="292" text-anchor="middle">2025</text><text class="rrm-ax" x="530.0" y="292" text-anchor="middle">2026</text><line x1="44" y1="12" x2="66" y2="12" stroke="#1c1c1c" stroke-width="2.25"></line><text class="rrm-ax" x="72" y="16">세 학회 채택작</text><line x1="176" y1="12" x2="198" y2="12" stroke="#949494" stroke-width="2" stroke-dasharray="5 4"></line><text class="rrm-ax" x="204" y="16">ICLR 투고작 (탈락 포함)</text><polyline points="44.0,246.8 165.5,232.9 287.0,167.7 408.5,102.5 530.0,54.4" fill="none" stroke="#949494" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"></polyline><g><title>2022년 ICLR 투고작: 4.2%</title><circle cx="44.0" cy="246.8" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2023년 ICLR 투고작: 7.3%</title><circle cx="165.5" cy="232.9" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2024년 ICLR 투고작: 21.8%</title><circle cx="287.0" cy="167.7" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2025년 ICLR 투고작: 36.2%</title><circle cx="408.5" cy="102.5" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2026년 ICLR 투고작: 46.8%</title><circle cx="530.0" cy="54.4" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><polyline points="44.0,248.4 165.5,223.7 287.0,159.9 408.5,111.4 530.0,61.7" fill="none" stroke="#1c1c1c" stroke-width="2.25" stroke-linejoin="round"></polyline><g><title>2022년 세 학회 채택작: 3.9%</title><circle cx="44.0" cy="248.4" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2023년 세 학회 채택작: 9.4%</title><circle cx="165.5" cy="223.7" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2024년 세 학회 채택작: 23.5%</title><circle cx="287.0" cy="159.9" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2025년 세 학회 채택작: 34.2%</title><circle cx="408.5" cy="111.4" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2026년 세 학회 채택작: 45.2%</title><circle cx="530.0" cy="61.7" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><text class="rrm-dlm" x="542.0" y="48.4">ICLR 투고작 46.8%</text><text class="rrm-dl" x="542.0" y="77.7">채택작 45.2%</text><text class="rrm-dl rrm-halo" x="51.0" y="238.4">3.9%</text></svg><svg class="rrm-mob" viewbox="0 0 360 266" aria-label="LLM 관련 논문 비중: 채택작 3.9%에서 45.2%로, ICLR 투고작 4.2%에서 46.8%로"><line class="rrm-gl" x1="30" y1="195.6" x2="312" y2="195.6"></line><line class="rrm-gl" x1="30" y1="159.2" x2="312" y2="159.2"></line><line class="rrm-gl" x1="30" y1="122.8" x2="312" y2="122.8"></line><line class="rrm-gl" x1="30" y1="86.4" x2="312" y2="86.4"></line><line class="rrm-gl" x1="30" y1="50.0" x2="312" y2="50.0"></line><text class="rrm-ax" x="22" y="236.5" text-anchor="end">0</text><text class="rrm-ax" x="22" y="200.1" text-anchor="end">10</text><text class="rrm-ax" x="22" y="163.7" text-anchor="end">20</text><text class="rrm-ax" x="22" y="127.3" text-anchor="end">30</text><text class="rrm-ax" x="22" y="90.9" text-anchor="end">40</text><text class="rrm-ax" x="22" y="54.5" text-anchor="end">50</text><text class="rrm-ax" x="22" y="38" text-anchor="end">%</text><line class="rrm-bl" x1="30" y1="232.0" x2="312" y2="232.0"></line><text class="rrm-ax" x="30.0" y="258" text-anchor="middle">2022</text><text class="rrm-ax" x="98.5" y="258" text-anchor="middle">2023</text><text class="rrm-ax" x="167.0" y="258" text-anchor="middle">2024</text><text class="rrm-ax" x="235.5" y="258" text-anchor="middle">2025</text><text class="rrm-ax" x="304.0" y="258" text-anchor="middle">2026</text><line x1="30" y1="12" x2="52" y2="12" stroke="#1c1c1c" stroke-width="2.25"></line><text class="rrm-ax" x="58" y="16">세 학회 채택작</text><line x1="30" y1="30" x2="52" y2="30" stroke="#949494" stroke-width="2" stroke-dasharray="5 4"></line><text class="rrm-ax" x="58" y="34">ICLR 투고작 (탈락 포함)</text><polyline points="30.0,216.6 98.5,205.3 167.0,152.8 235.5,100.3 304.0,61.6" fill="none" stroke="#949494" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"></polyline><g><title>2022년 ICLR 투고작: 4.2%</title><circle cx="30.0" cy="216.6" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2023년 ICLR 투고작: 7.3%</title><circle cx="98.5" cy="205.3" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2024년 ICLR 투고작: 21.8%</title><circle cx="167.0" cy="152.8" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2025년 ICLR 투고작: 36.2%</title><circle cx="235.5" cy="100.3" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2026년 ICLR 투고작: 46.8%</title><circle cx="304.0" cy="61.6" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><polyline points="30.0,217.8 98.5,197.9 167.0,146.5 235.5,107.5 304.0,67.4" fill="none" stroke="#1c1c1c" stroke-width="2.25" stroke-linejoin="round"></polyline><g><title>2022년 세 학회 채택작: 3.9%</title><circle cx="30.0" cy="217.8" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2023년 세 학회 채택작: 9.4%</title><circle cx="98.5" cy="197.9" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2024년 세 학회 채택작: 23.5%</title><circle cx="167.0" cy="146.5" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2025년 세 학회 채택작: 34.2%</title><circle cx="235.5" cy="107.5" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2026년 세 학회 채택작: 45.2%</title><circle cx="304.0" cy="67.4" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><text class="rrm-dlm" x="311.0" y="55.6">46.8%</text><text class="rrm-dl" x="311.0" y="83.4">45.2%</text><text class="rrm-dl rrm-halo" x="37.0" y="207.8">3.9%</text></svg><figcaption><b>그림 1.</b> 초록에 LLM 관련 표현을 쓴 논문의 비중. 채택작은 ICLR, ICML, NeurIPS를 합친 값이다. 2026년은 ICLR과 ICML만 들어갔다. LLM 관련 표현은 LLM, 언어 모델, 인컨텍스트 학습, 사고 사슬, LLM 에이전트 같은 말을 정규식으로 잡았다.</figcaption></figure>
+<figure class="rrm-fig figure"><svg class="rrm-desk" viewbox="0 0 680 300" role="img" aria-label="LLM 관련 논문 비중: 채택작 3.9%에서 45.2%로, ICLR 투고작 4.2%에서 46.8%로"><line class="rrm-gl" x1="44" y1="220.8" x2="538" y2="220.8"></line><line class="rrm-gl" x1="44" y1="175.6" x2="538" y2="175.6"></line><line class="rrm-gl" x1="44" y1="130.4" x2="538" y2="130.4"></line><line class="rrm-gl" x1="44" y1="85.2" x2="538" y2="85.2"></line><line class="rrm-gl" x1="44" y1="40.0" x2="538" y2="40.0"></line><text class="rrm-ax" x="36" y="270.5" text-anchor="end">0</text><text class="rrm-ax" x="36" y="225.3" text-anchor="end">10</text><text class="rrm-ax" x="36" y="180.1" text-anchor="end">20</text><text class="rrm-ax" x="36" y="134.9" text-anchor="end">30</text><text class="rrm-ax" x="36" y="89.7" text-anchor="end">40</text><text class="rrm-ax" x="36" y="44.5" text-anchor="end">50</text><text class="rrm-ax" x="36" y="28" text-anchor="end">%</text><line class="rrm-bl" x1="44" y1="266.0" x2="538" y2="266.0"></line><text class="rrm-ax" x="44.0" y="292" text-anchor="middle">2022</text><text class="rrm-ax" x="165.5" y="292" text-anchor="middle">2023</text><text class="rrm-ax" x="287.0" y="292" text-anchor="middle">2024</text><text class="rrm-ax" x="408.5" y="292" text-anchor="middle">2025</text><text class="rrm-ax" x="530.0" y="292" text-anchor="middle">2026</text><line x1="44" y1="12" x2="66" y2="12" stroke="#1c1c1c" stroke-width="2.25"></line><text class="rrm-ax" x="72" y="16">세 학회 채택작</text><line x1="176" y1="12" x2="198" y2="12" stroke="#949494" stroke-width="2" stroke-dasharray="5 4"></line><text class="rrm-ax" x="204" y="16">ICLR 투고작 (탈락 포함)</text><polyline points="44.0,246.8 165.5,232.9 287.0,167.7 408.5,102.5 530.0,54.4" fill="none" stroke="#949494" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"></polyline><g><title>2022년 ICLR 투고작: 4.2%</title><circle cx="44.0" cy="246.8" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2023년 ICLR 투고작: 7.3%</title><circle cx="165.5" cy="232.9" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2024년 ICLR 투고작: 21.8%</title><circle cx="287.0" cy="167.7" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2025년 ICLR 투고작: 36.2%</title><circle cx="408.5" cy="102.5" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2026년 ICLR 투고작: 46.8%</title><circle cx="530.0" cy="54.4" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><polyline points="44.0,248.4 165.5,223.7 287.0,159.9 408.5,111.4 530.0,61.7" fill="none" stroke="#1c1c1c" stroke-width="2.25" stroke-linejoin="round"></polyline><g><title>2022년 세 학회 채택작: 3.9%</title><circle cx="44.0" cy="248.4" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2023년 세 학회 채택작: 9.4%</title><circle cx="165.5" cy="223.7" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2024년 세 학회 채택작: 23.5%</title><circle cx="287.0" cy="159.9" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2025년 세 학회 채택작: 34.2%</title><circle cx="408.5" cy="111.4" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2026년 세 학회 채택작: 45.2%</title><circle cx="530.0" cy="61.7" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><text class="rrm-dlm" x="542.0" y="48.4">ICLR 투고작 46.8%</text><text class="rrm-dl" x="542.0" y="77.7">채택작 45.2%</text><text class="rrm-dl rrm-halo" x="51.0" y="238.4">3.9%</text></svg><svg class="rrm-mob" viewbox="0 0 360 266" role="img" aria-label="LLM 관련 논문 비중: 채택작 3.9%에서 45.2%로, ICLR 투고작 4.2%에서 46.8%로"><line class="rrm-gl" x1="30" y1="195.6" x2="312" y2="195.6"></line><line class="rrm-gl" x1="30" y1="159.2" x2="312" y2="159.2"></line><line class="rrm-gl" x1="30" y1="122.8" x2="312" y2="122.8"></line><line class="rrm-gl" x1="30" y1="86.4" x2="312" y2="86.4"></line><line class="rrm-gl" x1="30" y1="50.0" x2="312" y2="50.0"></line><text class="rrm-ax" x="22" y="236.5" text-anchor="end">0</text><text class="rrm-ax" x="22" y="200.1" text-anchor="end">10</text><text class="rrm-ax" x="22" y="163.7" text-anchor="end">20</text><text class="rrm-ax" x="22" y="127.3" text-anchor="end">30</text><text class="rrm-ax" x="22" y="90.9" text-anchor="end">40</text><text class="rrm-ax" x="22" y="54.5" text-anchor="end">50</text><text class="rrm-ax" x="22" y="38" text-anchor="end">%</text><line class="rrm-bl" x1="30" y1="232.0" x2="312" y2="232.0"></line><text class="rrm-ax" x="30.0" y="258" text-anchor="middle">2022</text><text class="rrm-ax" x="98.5" y="258" text-anchor="middle">2023</text><text class="rrm-ax" x="167.0" y="258" text-anchor="middle">2024</text><text class="rrm-ax" x="235.5" y="258" text-anchor="middle">2025</text><text class="rrm-ax" x="304.0" y="258" text-anchor="middle">2026</text><line x1="30" y1="12" x2="52" y2="12" stroke="#1c1c1c" stroke-width="2.25"></line><text class="rrm-ax" x="58" y="16">세 학회 채택작</text><line x1="30" y1="30" x2="52" y2="30" stroke="#949494" stroke-width="2" stroke-dasharray="5 4"></line><text class="rrm-ax" x="58" y="34">ICLR 투고작 (탈락 포함)</text><polyline points="30.0,216.6 98.5,205.3 167.0,152.8 235.5,100.3 304.0,61.6" fill="none" stroke="#949494" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"></polyline><g><title>2022년 ICLR 투고작: 4.2%</title><circle cx="30.0" cy="216.6" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2023년 ICLR 투고작: 7.3%</title><circle cx="98.5" cy="205.3" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2024년 ICLR 투고작: 21.8%</title><circle cx="167.0" cy="152.8" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2025년 ICLR 투고작: 36.2%</title><circle cx="235.5" cy="100.3" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2026년 ICLR 투고작: 46.8%</title><circle cx="304.0" cy="61.6" r="4.5" fill="#949494" stroke="#ffffff" stroke-width="2"></circle></g><polyline points="30.0,217.8 98.5,197.9 167.0,146.5 235.5,107.5 304.0,67.4" fill="none" stroke="#1c1c1c" stroke-width="2.25" stroke-linejoin="round"></polyline><g><title>2022년 세 학회 채택작: 3.9%</title><circle cx="30.0" cy="217.8" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2023년 세 학회 채택작: 9.4%</title><circle cx="98.5" cy="197.9" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2024년 세 학회 채택작: 23.5%</title><circle cx="167.0" cy="146.5" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2025년 세 학회 채택작: 34.2%</title><circle cx="235.5" cy="107.5" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><g><title>2026년 세 학회 채택작: 45.2%</title><circle cx="304.0" cy="67.4" r="4.5" fill="#1c1c1c" stroke="#ffffff" stroke-width="2"></circle></g><text class="rrm-dlm" x="311.0" y="55.6">46.8%</text><text class="rrm-dl" x="311.0" y="83.4">45.2%</text><text class="rrm-dl rrm-halo" x="37.0" y="207.8">3.9%</text></svg><figcaption><b>그림 1.</b> 초록에 LLM 관련 표현을 쓴 논문의 비중. 채택작은 ICLR, ICML, NeurIPS를 합친 값이다. 2026년은 ICLR과 ICML만 들어갔다. LLM 관련 표현은 LLM, 언어 모델, 인컨텍스트 학습, 사고 사슬, LLM 에이전트 같은 말을 정규식으로 잡았다.</figcaption></figure>
 <p>초록에 LLM 관련 표현을 쓴 채택작은 2022년 3.9%에서 2024년 23.5%, 2026년 45.2%로 늘었다(그림 1). ICLR 투고작도 4.2%에서 46.8%로 같은 길을 걸었다. LLM 중심 주제를 뺀 채택작의 비중은 ICLR에서 90.0%에서 57.5%로, ICML에서 94.6%에서 61.7%로(2022~2026년), NeurIPS에서 91.7%에서 71.1%로(2022~2025년) 줄었다. 2023년 이후 추세로 보면 해마다 약 12%씩 줄어든 셈이다.</p>
 <p>심사가 이 쏠림을 누그러뜨리지도 않았다. 2024~2026년 ICLR에서 LLM 중심 주제의 채택률은 30.2%(1만 3,569편 중)로, 나머지 주제의 28.5%(2만 5,320편 중)보다 오히려 조금 높았다.</p>
 <p>LLM 중심 주제는 연산 부담도 크다. 초록에 대규모 연산 표현이 나오는 논문의 비율을 주제별로 구해 중앙값을 보면 LLM 중심 주제가 17.1%, 나머지 주제가 6.1%다. <strong>블로그의 해석</strong>: 많은 연구진이 같은 문제를 큰 연산으로 푸는 곳에서 작은 연구실이 속도로 겨루기는 어렵다. 이 지도가 LLM 바깥을 들여다보는 이유다.</p>
 </section>
 <section id="지도" class="level2">
 <h2 class="anchored" data-anchor-id="지도">지도</h2>
-<figure class="rrm-fig figure"><p class="rrm-hint">그림을 옆으로 밀면 오른쪽 주제까지 보인다.</p><div class="rrm-scroll"><svg class="rrm-wide" viewbox="0 0 720 470" aria-label="LLM 중심 주제를 뺀 109개 주제의 상대 성장률과 대규모 연산 표현 비율. 상위 10위는 모두 대규모 연산 표현이 8% 미만이다"><line class="rrm-gl" x1="50" y1="308.6" x2="704" y2="308.6"></line><line class="rrm-gl" x1="50" y1="201.1" x2="704" y2="201.1"></line><line class="rrm-gl" x1="50" y1="93.7" x2="704" y2="93.7"></line><text class="rrm-ax" x="42" y="420.5" text-anchor="end">0</text><text class="rrm-ax" x="42" y="313.1" text-anchor="end">10</text><text class="rrm-ax" x="42" y="205.6" text-anchor="end">20</text><text class="rrm-ax" x="42" y="98.2" text-anchor="end">30</text><text class="rrm-at" x="42" y="26" text-anchor="start" dx="-40">대규모 연산 표현 비율 (%)</text><text class="rrm-ax" x="57.0" y="435" text-anchor="middle">-40</text><text class="rrm-ax" x="126.5" y="435" text-anchor="middle">-20</text><text class="rrm-ax" x="196.1" y="435" text-anchor="middle">0</text><text class="rrm-ax" x="265.7" y="435" text-anchor="middle">+20</text><text class="rrm-ax" x="335.3" y="435" text-anchor="middle">+40</text><text class="rrm-ax" x="404.8" y="435" text-anchor="middle">+60</text><text class="rrm-ax" x="474.4" y="435" text-anchor="middle">+80</text><text class="rrm-ax" x="544.0" y="435" text-anchor="middle">+100</text><text class="rrm-ax" x="613.6" y="435" text-anchor="middle">+120</text><text class="rrm-ax" x="683.1" y="435" text-anchor="middle">+140</text><text class="rrm-at" x="704" y="462" text-anchor="end">상대 성장률 (%/년, LLM 중심 주제를 뺀 채택작 대비)</text><line class="rrm-bl" x1="50" y1="416.0" x2="704" y2="416.0"></line><line x1="196.1" y1="34" x2="196.1" y2="416.0" stroke="#a8a8a4" stroke-width="1"></line><line x1="50" y1="350.8" x2="704" y2="350.8" stroke="#a8a8a4" stroke-width="1" stroke-dasharray="4 4"></line><circle cx="134.0" cy="401.4" r="14.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="103"></circle><circle cx="278.3" cy="373.8" r="13.6" fill="#5a5a5a" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="3"></circle><circle cx="141.7" cy="342.4" r="13.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="57"></circle><circle cx="184.4" cy="363.4" r="12.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="65"></circle><circle cx="230.6" cy="305.9" r="12.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="70"></circle><circle cx="91.5" cy="391.4" r="12.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="43"></circle><circle cx="284.3" cy="307.0" r="12.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="86"></circle><circle cx="156.2" cy="358.1" r="11.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="124"></circle><circle cx="118.5" cy="405.8" r="11.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="22"></circle><circle cx="136.4" cy="347.1" r="11.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="62"></circle><circle cx="147.5" cy="370.6" r="11.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="32"></circle><circle cx="451.7" cy="58.8" r="11.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="55"></circle><circle cx="313.3" cy="333.6" r="11.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="107"></circle><circle cx="125.2" cy="404.8" r="11.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="95"></circle><circle cx="246.7" cy="284.2" r="11.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="40"></circle><circle cx="114.5" cy="371.8" r="11.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="5"></circle><circle cx="191.9" cy="380.3" r="11.3" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="4"></circle><circle cx="111.9" cy="398.0" r="11.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="15"></circle><circle cx="119.9" cy="391.8" r="11.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="37"></circle><circle cx="167.7" cy="360.5" r="11.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="26"></circle><circle cx="128.7" cy="343.9" r="11.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="80"></circle><circle cx="159.2" cy="309.2" r="11.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="82"></circle><circle cx="216.6" cy="374.6" r="11.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="125"></circle><circle cx="601.5" cy="235.8" r="11.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="119"></circle><circle cx="327.9" cy="218.0" r="10.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="31"></circle><circle cx="423.1" cy="207.7" r="10.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="61"></circle><circle cx="253.5" cy="346.8" r="10.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="36"></circle><circle cx="79.2" cy="305.2" r="10.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="111"></circle><circle cx="210.9" cy="392.2" r="10.8" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="8"></circle><circle cx="205.4" cy="295.9" r="10.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="106"></circle><circle cx="136.6" cy="380.2" r="10.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="18"></circle><circle cx="188.5" cy="376.6" r="10.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="110"></circle><circle cx="173.4" cy="401.5" r="10.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="115"></circle><circle cx="171.9" cy="401.3" r="10.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="54"></circle><circle cx="130.7" cy="389.8" r="10.4" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="126"></circle><circle cx="205.3" cy="385.7" r="10.4" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="24"></circle><circle cx="191.9" cy="381.3" r="10.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="29"></circle><circle cx="438.3" cy="380.5" r="10.2" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="12"></circle><circle cx="260.2" cy="400.2" r="10.2" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="130"></circle><circle cx="277.8" cy="388.3" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="138"></circle><circle cx="180.7" cy="348.6" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="79"></circle><circle cx="172.9" cy="228.3" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="104"></circle><circle cx="139.3" cy="291.7" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="38"></circle><circle cx="344.7" cy="339.5" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="120"></circle><circle cx="404.1" cy="169.7" r="10.2" fill="#5a5a5a" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="92"></circle><circle cx="221.4" cy="318.7" r="10.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="132"></circle><circle cx="170.4" cy="383.3" r="10.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="142"></circle><circle cx="195.3" cy="386.9" r="10.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="122"></circle><circle cx="203.2" cy="391.0" r="10.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="83"></circle><circle cx="141.7" cy="407.6" r="10.0" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="14"></circle><circle cx="191.9" cy="275.3" r="10.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="85"></circle><circle cx="275.0" cy="295.7" r="10.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="19"></circle><circle cx="112.9" cy="403.0" r="9.9" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="75"></circle><circle cx="585.1" cy="342.1" r="9.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="11"></circle><circle cx="195.4" cy="307.3" r="9.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="6"></circle><circle cx="156.6" cy="407.3" r="9.9" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="76"></circle><circle cx="350.6" cy="284.9" r="9.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="39"></circle><circle cx="105.5" cy="337.0" r="9.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="25"></circle><circle cx="208.4" cy="339.3" r="9.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="143"></circle><circle cx="94.5" cy="378.9" r="9.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="35"></circle><circle cx="257.1" cy="269.9" r="9.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="44"></circle><circle cx="303.8" cy="180.4" r="9.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="56"></circle><circle cx="219.1" cy="288.8" r="9.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="81"></circle><circle cx="125.2" cy="387.5" r="9.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="89"></circle><circle cx="289.1" cy="300.9" r="9.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="127"></circle><circle cx="242.6" cy="386.9" r="9.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="51"></circle><circle cx="93.8" cy="381.3" r="9.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="117"></circle><circle cx="152.5" cy="381.0" r="9.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="136"></circle><circle cx="159.9" cy="266.1" r="9.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="128"></circle><circle cx="278.0" cy="350.8" r="9.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="146"></circle><circle cx="158.1" cy="194.8" r="9.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="2"></circle><circle cx="296.6" cy="324.7" r="9.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="33"></circle><circle cx="145.7" cy="383.8" r="9.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="17"></circle><circle cx="120.0" cy="356.6" r="9.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="118"></circle><circle cx="436.7" cy="328.3" r="9.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="99"></circle><circle cx="281.4" cy="376.0" r="9.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="94"></circle><circle cx="149.3" cy="398.8" r="9.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="67"></circle><circle cx="208.8" cy="358.5" r="9.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="102"></circle><circle cx="371.4" cy="256.6" r="9.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="41"></circle><circle cx="381.1" cy="338.0" r="9.0" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="10"></circle><circle cx="347.6" cy="259.0" r="8.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="133"></circle><circle cx="158.4" cy="385.8" r="8.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="59"></circle><circle cx="137.1" cy="391.3" r="8.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="50"></circle><circle cx="187.0" cy="347.2" r="8.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="46"></circle><circle cx="297.8" cy="346.5" r="8.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="141"></circle><circle cx="165.4" cy="346.1" r="8.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="140"></circle><circle cx="247.5" cy="338.3" r="8.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="13"></circle><circle cx="78.3" cy="376.9" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="71"></circle><circle cx="141.2" cy="376.7" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="123"></circle><circle cx="92.3" cy="336.4" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="28"></circle><circle cx="257.6" cy="409.2" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="91"></circle><circle cx="242.9" cy="369.1" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="113"></circle><circle cx="106.5" cy="402.1" r="8.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="139"></circle><circle cx="247.2" cy="270.9" r="8.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="105"></circle><circle cx="552.0" cy="213.2" r="8.4" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="134"></circle><circle cx="105.1" cy="323.3" r="8.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="0"></circle><circle cx="449.4" cy="344.9" r="8.3" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="149"></circle><circle cx="206.2" cy="337.0" r="8.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="34"></circle><circle cx="683.0" cy="245.1" r="8.2" fill="#5a5a5a" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="131"></circle><circle cx="168.5" cy="375.3" r="8.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="74"></circle><circle cx="139.1" cy="407.8" r="8.2" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="114"></circle><circle cx="70.5" cy="358.6" r="8.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="7"></circle><circle cx="150.2" cy="325.1" r="8.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="112"></circle><circle cx="104.0" cy="416.0" r="8.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="16"></circle><circle cx="180.9" cy="373.4" r="8.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="148"></circle><circle cx="206.1" cy="184.0" r="8.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="135"></circle><circle cx="81.1" cy="232.6" r="8.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="100"></circle><circle cx="207.0" cy="312.3" r="7.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="137"></circle><circle cx="232.1" cy="356.9" r="7.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="47"></circle><text class="rrm-nt rrm-halo" x="202.1" y="39">비LLM 전체와 같은 속도</text><text class="rrm-nt rrm-halo" x="54" y="345.8">중앙값 6.1%</text><text class="rrm-nt rrm-halo" x="700" y="408.0" text-anchor="end">빨리 크고 연산 부담이 작은 쪽</text><text class="rrm-rk rrm-halo" x="273.4" y="404.7" text-anchor="start">1</text><text class="rrm-rk rrm-halo" x="169.5" y="411.8" text-anchor="start">2</text><text class="rrm-rk rrm-halo" x="451.6" y="385.0" text-anchor="start">3</text><text class="rrm-rk rrm-halo" x="224.7" y="396.7" text-anchor="start">4</text><text class="rrm-rk rrm-halo" x="177.6" y="384.8" text-anchor="end">5</text><text class="rrm-rk rrm-halo" x="460.7" y="349.4" text-anchor="start">6</text><text class="rrm-rk rrm-halo" x="99.9" y="407.5" text-anchor="end">7</text><text class="rrm-rk rrm-halo" x="141.7" y="394.6" text-anchor="middle">8</text><text class="rrm-rk rrm-halo" x="393.0" y="342.5" text-anchor="start">9</text><line x1="139.1" y1="398.7" x2="139.1" y2="379.7" stroke="#5a5a5a" stroke-width="1"></line><text class="rrm-rk rrm-halo" x="139.1" y="377.7" text-anchor="middle">10</text><text class="rrm-dlm rrm-halo" x="278.3" y="357.2" text-anchor="middle">16위 확산 모델 이론</text><text class="rrm-dlm rrm-halo" x="671.8" y="249.6" text-anchor="end">18위 자기회귀 이미지 생성</text><text class="rrm-dlm rrm-halo" x="417.2" y="174.2" text-anchor="start">22위 EEG, fMRI 뇌 디코딩</text></svg></div><div class="rrm-tip" hidden=""></div><figcaption><b>그림 2.</b> LLM 중심 주제를 뺀 109개 주제의 지도. 가로축은 LLM 중심 주제를 뺀 채택작 안에서 이 주제의 점유율이 해마다 변한 비율(2023~2026년), 세로축은 초록에 대규모 연산 표현(수십억 파라미터, 대규모 사전학습, 실제 로봇 실험 같은 말)이 나오는 논문의 비율이다. 원의 넓이는 2023~2026년 채택작 수, 검은 원과 숫자는 여지 점수 상위 10위다. 원을 가리키거나 누르면 주제별 수치가 나온다.</figcaption></figure><script>
+<figure class="rrm-fig figure"><p class="rrm-hint">그림을 옆으로 밀면 오른쪽 주제까지 보인다.</p><div class="rrm-scroll"><svg class="rrm-wide" viewbox="0 0 720 470" role="img" aria-label="LLM 중심 주제를 뺀 109개 주제의 상대 성장률과 대규모 연산 표현 비율. 상위 10위는 모두 대규모 연산 표현이 8% 미만이다"><line class="rrm-gl" x1="50" y1="308.6" x2="704" y2="308.6"></line><line class="rrm-gl" x1="50" y1="201.1" x2="704" y2="201.1"></line><line class="rrm-gl" x1="50" y1="93.7" x2="704" y2="93.7"></line><text class="rrm-ax" x="42" y="420.5" text-anchor="end">0</text><text class="rrm-ax" x="42" y="313.1" text-anchor="end">10</text><text class="rrm-ax" x="42" y="205.6" text-anchor="end">20</text><text class="rrm-ax" x="42" y="98.2" text-anchor="end">30</text><text class="rrm-at" x="42" y="26" text-anchor="start" dx="-40">대규모 연산 표현 비율 (%)</text><text class="rrm-ax" x="57.0" y="435" text-anchor="middle">-40</text><text class="rrm-ax" x="126.5" y="435" text-anchor="middle">-20</text><text class="rrm-ax" x="196.1" y="435" text-anchor="middle">0</text><text class="rrm-ax" x="265.7" y="435" text-anchor="middle">+20</text><text class="rrm-ax" x="335.3" y="435" text-anchor="middle">+40</text><text class="rrm-ax" x="404.8" y="435" text-anchor="middle">+60</text><text class="rrm-ax" x="474.4" y="435" text-anchor="middle">+80</text><text class="rrm-ax" x="544.0" y="435" text-anchor="middle">+100</text><text class="rrm-ax" x="613.6" y="435" text-anchor="middle">+120</text><text class="rrm-ax" x="683.1" y="435" text-anchor="middle">+140</text><text class="rrm-at" x="704" y="462" text-anchor="end">상대 성장률 (%/년, LLM 중심 주제를 뺀 채택작 대비)</text><line class="rrm-bl" x1="50" y1="416.0" x2="704" y2="416.0"></line><line x1="196.1" y1="34" x2="196.1" y2="416.0" stroke="#a8a8a4" stroke-width="1"></line><line x1="50" y1="350.8" x2="704" y2="350.8" stroke="#a8a8a4" stroke-width="1" stroke-dasharray="4 4"></line><circle cx="134.0" cy="401.4" r="14.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="103"></circle><circle cx="278.3" cy="373.8" r="13.6" fill="#5a5a5a" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="3"></circle><circle cx="141.7" cy="342.4" r="13.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="57"></circle><circle cx="184.4" cy="363.4" r="12.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="65"></circle><circle cx="230.6" cy="305.9" r="12.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="70"></circle><circle cx="91.5" cy="391.4" r="12.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="43"></circle><circle cx="284.3" cy="307.0" r="12.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="86"></circle><circle cx="156.2" cy="358.1" r="11.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="124"></circle><circle cx="118.5" cy="405.8" r="11.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="22"></circle><circle cx="136.4" cy="347.1" r="11.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="62"></circle><circle cx="147.5" cy="370.6" r="11.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="32"></circle><circle cx="451.7" cy="58.8" r="11.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="55"></circle><circle cx="313.3" cy="333.6" r="11.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="107"></circle><circle cx="125.2" cy="404.8" r="11.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="95"></circle><circle cx="246.7" cy="284.2" r="11.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="40"></circle><circle cx="114.5" cy="371.8" r="11.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="5"></circle><circle cx="191.9" cy="380.3" r="11.3" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="4"></circle><circle cx="111.9" cy="398.0" r="11.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="15"></circle><circle cx="119.9" cy="391.8" r="11.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="37"></circle><circle cx="167.7" cy="360.5" r="11.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="26"></circle><circle cx="128.7" cy="343.9" r="11.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="80"></circle><circle cx="159.2" cy="309.2" r="11.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="82"></circle><circle cx="216.6" cy="374.6" r="11.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="125"></circle><circle cx="601.5" cy="235.8" r="11.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="119"></circle><circle cx="327.9" cy="218.0" r="10.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="31"></circle><circle cx="423.1" cy="207.7" r="10.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="61"></circle><circle cx="253.5" cy="346.8" r="10.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="36"></circle><circle cx="79.2" cy="305.2" r="10.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="111"></circle><circle cx="210.9" cy="392.2" r="10.8" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="8"></circle><circle cx="205.4" cy="295.9" r="10.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="106"></circle><circle cx="136.6" cy="380.2" r="10.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="18"></circle><circle cx="188.5" cy="376.6" r="10.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="110"></circle><circle cx="173.4" cy="401.5" r="10.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="115"></circle><circle cx="171.9" cy="401.3" r="10.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="54"></circle><circle cx="130.7" cy="389.8" r="10.4" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="126"></circle><circle cx="205.3" cy="385.7" r="10.4" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="24"></circle><circle cx="191.9" cy="381.3" r="10.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="29"></circle><circle cx="438.3" cy="380.5" r="10.2" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="12"></circle><circle cx="260.2" cy="400.2" r="10.2" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="130"></circle><circle cx="277.8" cy="388.3" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="138"></circle><circle cx="180.7" cy="348.6" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="79"></circle><circle cx="172.9" cy="228.3" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="104"></circle><circle cx="139.3" cy="291.7" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="38"></circle><circle cx="344.7" cy="339.5" r="10.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="120"></circle><circle cx="404.1" cy="169.7" r="10.2" fill="#5a5a5a" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="92"></circle><circle cx="221.4" cy="318.7" r="10.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="132"></circle><circle cx="170.4" cy="383.3" r="10.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="142"></circle><circle cx="195.3" cy="386.9" r="10.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="122"></circle><circle cx="203.2" cy="391.0" r="10.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="83"></circle><circle cx="141.7" cy="407.6" r="10.0" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="14"></circle><circle cx="191.9" cy="275.3" r="10.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="85"></circle><circle cx="275.0" cy="295.7" r="10.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="19"></circle><circle cx="112.9" cy="403.0" r="9.9" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="75"></circle><circle cx="585.1" cy="342.1" r="9.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="11"></circle><circle cx="195.4" cy="307.3" r="9.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="6"></circle><circle cx="156.6" cy="407.3" r="9.9" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="76"></circle><circle cx="350.6" cy="284.9" r="9.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="39"></circle><circle cx="105.5" cy="337.0" r="9.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="25"></circle><circle cx="208.4" cy="339.3" r="9.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="143"></circle><circle cx="94.5" cy="378.9" r="9.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="35"></circle><circle cx="257.1" cy="269.9" r="9.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="44"></circle><circle cx="303.8" cy="180.4" r="9.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="56"></circle><circle cx="219.1" cy="288.8" r="9.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="81"></circle><circle cx="125.2" cy="387.5" r="9.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="89"></circle><circle cx="289.1" cy="300.9" r="9.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="127"></circle><circle cx="242.6" cy="386.9" r="9.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="51"></circle><circle cx="93.8" cy="381.3" r="9.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="117"></circle><circle cx="152.5" cy="381.0" r="9.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="136"></circle><circle cx="159.9" cy="266.1" r="9.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="128"></circle><circle cx="278.0" cy="350.8" r="9.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="146"></circle><circle cx="158.1" cy="194.8" r="9.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="2"></circle><circle cx="296.6" cy="324.7" r="9.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="33"></circle><circle cx="145.7" cy="383.8" r="9.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="17"></circle><circle cx="120.0" cy="356.6" r="9.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="118"></circle><circle cx="436.7" cy="328.3" r="9.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="99"></circle><circle cx="281.4" cy="376.0" r="9.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="94"></circle><circle cx="149.3" cy="398.8" r="9.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="67"></circle><circle cx="208.8" cy="358.5" r="9.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="102"></circle><circle cx="371.4" cy="256.6" r="9.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="41"></circle><circle cx="381.1" cy="338.0" r="9.0" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="10"></circle><circle cx="347.6" cy="259.0" r="8.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="133"></circle><circle cx="158.4" cy="385.8" r="8.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="59"></circle><circle cx="137.1" cy="391.3" r="8.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="50"></circle><circle cx="187.0" cy="347.2" r="8.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="46"></circle><circle cx="297.8" cy="346.5" r="8.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="141"></circle><circle cx="165.4" cy="346.1" r="8.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="140"></circle><circle cx="247.5" cy="338.3" r="8.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="13"></circle><circle cx="78.3" cy="376.9" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="71"></circle><circle cx="141.2" cy="376.7" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="123"></circle><circle cx="92.3" cy="336.4" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="28"></circle><circle cx="257.6" cy="409.2" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="91"></circle><circle cx="242.9" cy="369.1" r="8.7" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="113"></circle><circle cx="106.5" cy="402.1" r="8.6" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="139"></circle><circle cx="247.2" cy="270.9" r="8.5" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="105"></circle><circle cx="552.0" cy="213.2" r="8.4" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="134"></circle><circle cx="105.1" cy="323.3" r="8.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="0"></circle><circle cx="449.4" cy="344.9" r="8.3" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="149"></circle><circle cx="206.2" cy="337.0" r="8.3" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="34"></circle><circle cx="683.0" cy="245.1" r="8.2" fill="#5a5a5a" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="131"></circle><circle cx="168.5" cy="375.3" r="8.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="74"></circle><circle cx="139.1" cy="407.8" r="8.2" fill="#1c1c1c" fill-opacity="1" stroke="#ffffff" stroke-width="1.5" data-id="114"></circle><circle cx="70.5" cy="358.6" r="8.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="7"></circle><circle cx="150.2" cy="325.1" r="8.2" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="112"></circle><circle cx="104.0" cy="416.0" r="8.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="16"></circle><circle cx="180.9" cy="373.4" r="8.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="148"></circle><circle cx="206.1" cy="184.0" r="8.1" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="135"></circle><circle cx="81.1" cy="232.6" r="8.0" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="100"></circle><circle cx="207.0" cy="312.3" r="7.9" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="137"></circle><circle cx="232.1" cy="356.9" r="7.8" fill="#b5b5b5" fill-opacity="0.85" stroke="#ffffff" stroke-width="1.5" data-id="47"></circle><text class="rrm-nt rrm-halo" x="202.1" y="39">비LLM 전체와 같은 속도</text><text class="rrm-nt rrm-halo" x="54" y="345.8">중앙값 6.1%</text><text class="rrm-nt rrm-halo" x="700" y="408.0" text-anchor="end">빨리 크고 연산 부담이 작은 쪽</text><text class="rrm-rk rrm-halo" x="273.4" y="404.7" text-anchor="start">1</text><text class="rrm-rk rrm-halo" x="169.5" y="411.8" text-anchor="start">2</text><text class="rrm-rk rrm-halo" x="451.6" y="385.0" text-anchor="start">3</text><text class="rrm-rk rrm-halo" x="224.7" y="396.7" text-anchor="start">4</text><text class="rrm-rk rrm-halo" x="177.6" y="384.8" text-anchor="end">5</text><text class="rrm-rk rrm-halo" x="460.7" y="349.4" text-anchor="start">6</text><text class="rrm-rk rrm-halo" x="99.9" y="407.5" text-anchor="end">7</text><text class="rrm-rk rrm-halo" x="141.7" y="394.6" text-anchor="middle">8</text><text class="rrm-rk rrm-halo" x="393.0" y="342.5" text-anchor="start">9</text><line x1="139.1" y1="398.7" x2="139.1" y2="379.7" stroke="#5a5a5a" stroke-width="1"></line><text class="rrm-rk rrm-halo" x="139.1" y="377.7" text-anchor="middle">10</text><text class="rrm-dlm rrm-halo" x="278.3" y="357.2" text-anchor="middle">16위 확산 모델 이론</text><text class="rrm-dlm rrm-halo" x="671.8" y="249.6" text-anchor="end">18위 자기회귀 이미지 생성</text><text class="rrm-dlm rrm-halo" x="417.2" y="174.2" text-anchor="start">22위 EEG, fMRI 뇌 디코딩</text></svg></div><div class="rrm-tip" hidden=""></div><figcaption><b>그림 2.</b> LLM 중심 주제를 뺀 109개 주제의 지도. 가로축은 LLM 중심 주제를 뺀 채택작 안에서 이 주제의 점유율이 해마다 변한 비율(2023~2026년), 세로축은 초록에 대규모 연산 표현(수십억 파라미터, 대규모 사전학습, 실제 로봇 실험 같은 말)이 나오는 논문의 비율이다. 원의 넓이는 2023~2026년 채택작 수, 검은 원과 숫자는 여지 점수 상위 10위다. 원을 가리키거나 누르면 주제별 수치가 나온다.</figcaption></figure><script>
 (function(){
   var fig = document.currentScript.previousElementSibling, D = {"130": [1, "MCMC와 신경 샘플러", 0.73, 0.184, 0.015, 0.085, 91, 272], "76": [2, "온라인 학습 이론", 0.71, -0.114, 0.008, 0.11, 92, 246], "12": [3, "플로우 매칭과 정규화 플로우", 0.69, 0.696, 0.033, 0.077, 79, 273], "8": [4, "메커니즘 설계, 시장과 경매", 0.68, 0.043, 0.022, 0.089, 84, 316], "4": [5, "계산 신경과학과 신경 회로", 0.67, -0.012, 0.033, 0.191, 88, 361], "149": [6, "딥페이크 탐지와 얼굴 인식", 0.65, 0.728, 0.066, 0.073, 67, 136], "75": [7, "게임 이론과 내쉬 균형 학습", 0.65, -0.239, 0.012, 0.13, 91, 247], "14": [8, "SGD 수렴 이론", 0.64, -0.157, 0.008, 0.129, 63, 256], "10": [9, "인간 모션 생성과 애니메이션", 0.63, 0.532, 0.073, 0.101, 57, 179], "114": [10, "인과 표현 학습과 식별성", 0.63, -0.164, 0.008, 0.084, 71, 131], "29": [11, "리만 기하, 위상 데이터 분석", 0.63, -0.012, 0.032, 0.097, 79, 279], "148": [12, "양자 머신러닝", 0.63, -0.044, 0.04, 0.182, 50, 126], "67": [13, "등변 신경망과 대칭성", 0.62, -0.135, 0.016, 0.08, 78, 187], "44": [14, "트랜스포머 표현력과 길이 일반화", 0.62, 0.175, 0.136, 0.158, 88, 228], "83": [15, "인과 발견과 구조 학습", 0.61, 0.02, 0.023, 0.043, 92, 257], "3": [16, "확산 모델 이론과 샘플링", 0.6, 0.236, 0.039, 0.092, 62, 610], "18": [17, "학습 동역학과 특징 학습 이론", 0.6, -0.171, 0.033, 0.16, 83, 300], "131": [18, "자기회귀 이미지 생성", 0.59, 1.4, 0.159, 0.136, 35, 132], "103": [19, "고차원 통계와 학습 이론", 0.59, -0.178, 0.014, 0.1, 97, 662], "61": [20, "희소, 선형 어텐션 설계", 0.57, 0.652, 0.194, 0.106, 80, 330], "115": [21, "클러스터링 알고리즘", 0.57, -0.065, 0.013, 0.057, 78, 297], "92": [22, "EEG, fMRI 뇌 디코딩", 0.57, 0.598, 0.229, 0.117, 73, 266], "35": [23, "신경망 일반화와 암기", 0.56, -0.292, 0.035, 0.147, 83, 232], "95": [24, "비볼록, 바이레벨 최적화", 0.56, -0.204, 0.01, 0.091, 83, 385], "22": [25, "멀티암드, 문맥적 밴딧", 0.56, -0.223, 0.009, 0.131, 65, 421], "15": [26, "ReLU 신경망 근사, 손실 지형", 0.56, -0.242, 0.017, 0.117, 74, 358], "102": [27, "전이 가능한 적대적 공격", 0.56, 0.036, 0.053, 0.112, 24, 187], "89": [28, "알고리즘 공정성", 0.56, -0.204, 0.026, 0.124, 54, 226], "91": [29, "컨포멀 예측", 0.56, 0.177, 0.006, 0.044, 3, 160], "138": [30, "이미지 복원과 초해상화", 0.55, 0.235, 0.026, 0.052, 32, 271], "94": [31, "스파이킹 신경망(SNN)", 0.55, 0.245, 0.037, 0.059, 29, 188], "33": [32, "물리 시뮬레이션 대리 모델", 0.55, 0.289, 0.085, 0.055, 76, 200], "125": [33, "그래프 생성과 동적 그래프", 0.55, 0.059, 0.038, 0.098, 46, 338], "34": [34, "NAS와 칩 설계 자동화", 0.55, 0.029, 0.073, 0.073, 73, 136], "110": [35, "동역학계 학습과 신경 ODE", 0.55, -0.022, 0.037, 0.073, 79, 300], "142": [36, "베이지안, 블랙박스 최적화", 0.54, -0.074, 0.03, 0.08, 58, 263], "37": [37, "강화학습 이론, 표본 복잡도", 0.54, -0.219, 0.022, 0.149, 53, 356], "113": [38, "추천 시스템", 0.54, 0.134, 0.044, 0.062, 38, 160], "51": [39, "확산 모델 기반 역문제", 0.54, 0.134, 0.027, 0.036, 43, 221], "126": [40, "노이즈 레이블과 준지도 학습", 0.53, -0.188, 0.024, 0.08, 73, 287], "39": [41, "멀티모달 융합과 모달리티 불균형", 0.53, 0.444, 0.122, 0.102, 39, 246], "50": [42, "특징 기여도와 반사실적 설명", 0.52, -0.17, 0.023, 0.075, 53, 174], "85": [43, "트랜스포머 구조와 학습 동역학", 0.52, -0.012, 0.131, 0.159, 69, 252], "54": [44, "처치 효과 추정과 인과 추론", 0.52, -0.07, 0.014, 0.051, 57, 293], "74": [45, "최적 수송과 와서스타인 거리", 0.52, -0.08, 0.038, 0.061, 56, 132], "146": [46, "인체 자세 추정과 3D 복원", 0.51, 0.235, 0.061, 0.047, 40, 214], "56": [47, "단백질 언어 모델과 유전체", 0.51, 0.31, 0.219, 0.101, 56, 228], "65": [48, "심층 강화학습 알고리즘", 0.51, -0.034, 0.049, 0.098, 62, 531], "11": [49, "3D 가우시안 스플래팅", 0.51, 1.118, 0.069, 0.041, 43, 247], "26": [50, "그래프 표현, 대조 학습", 0.51, -0.082, 0.052, 0.095, 68, 348], "123": [51, "분산 최적화와 통신 압축", 0.5, -0.158, 0.037, 0.091, 44, 164], "47": [52, "테스트 시점 적응(TTA)", 0.5, 0.103, 0.055, 0.083, 4, 109], "36": [53, "단백질 구조와 3D 분자 생성", 0.5, 0.165, 0.064, 0.083, 42, 326], "106": [54, "딥러닝 옵티마이저와 학습률", 0.5, 0.027, 0.112, 0.141, 57, 313], "120": [55, "3D 에셋, 장면 생성", 0.5, 0.427, 0.071, 0.052, 49, 267], "24": [56, "신경망 기반 조합 최적화", 0.49, 0.026, 0.028, 0.06, 38, 284], "70": [57, "확산 모델 설계와 학습", 0.49, 0.099, 0.102, 0.1, 65, 488], "136": [58, "백도어 공격과 데이터 오염", 0.49, -0.125, 0.033, 0.112, 11, 215], "71": [59, "인증된 강건성과 랜덤 스무딩", 0.49, -0.339, 0.036, 0.151, 40, 165], "17": [60, "불확실성 정량화와 보정", 0.49, -0.145, 0.03, 0.075, 38, 200], "62": [61, "차분 프라이버시(DP)", 0.49, -0.172, 0.064, 0.097, 97, 421], "132": [62, "연속 학습과 파국적 망각", 0.49, 0.073, 0.091, 0.094, 50, 265], "41": [63, "의료 영상 분할과 병리 분석", 0.49, 0.504, 0.148, 0.071, 41, 182], "127": [64, "비디오 행동 인식과 추적", 0.48, 0.267, 0.107, 0.062, 49, 224], "57": [65, "데이터 가치, 기여도와 선택", 0.48, -0.156, 0.069, 0.109, 87, 569], "13": [66, "소재 과학과 원자 수준 모델링", 0.48, 0.148, 0.072, 0.024, 50, 166], "133": [67, "기상, 기후 예측과 원격 탐사", 0.48, 0.435, 0.146, 0.062, 46, 178], "99": [68, "자율주행과 궤적 예측", 0.48, 0.692, 0.082, 0.056, 21, 196], "134": [69, "단일세포, 공간 전사체 분석", 0.48, 1.023, 0.189, 0.084, 16, 143], "135": [70, "표 데이터 딥러닝", 0.48, 0.029, 0.216, 0.112, 43, 125], "81": [71, "시계열 표현 학습과 생성", 0.47, 0.066, 0.118, 0.092, 44, 228], "86": [72, "NeRF와 3D 장면 재구성", 0.47, 0.254, 0.102, 0.062, 61, 453], "122": [73, "멀티에이전트 강화학습", 0.47, -0.002, 0.027, 0.074, 11, 258], "118": [74, "GAN과 생성 모델링 이론", 0.47, -0.219, 0.055, 0.09, 67, 199], "139": [75, "분포 외(OOD) 탐지", 0.47, -0.258, 0.013, 0.097, 10, 155], "137": [76, "개념 병목 모델(CBM)", 0.47, 0.031, 0.097, 0.105, 9, 114], "141": [77, "비지도 이상 탐지", 0.46, 0.292, 0.065, 0.041, 14, 170], "140": [78, "모방 학습과 역강화학습", 0.46, -0.088, 0.065, 0.077, 44, 169], "55": [79, "로봇 조작과 VLA 모델", 0.46, 0.735, 0.333, 0.041, 79, 391], "16": [80, "연합학습 보안과 프라이버시", 0.45, -0.265, 0.0, 0.078, 10, 128], "31": [81, "시계열 예측", 0.45, 0.379, 0.184, 0.085, 42, 331], "143": [82, "분자 성질 예측과 신약 개발", 0.44, 0.035, 0.071, 0.08, 29, 238], "38": [83, "월드 모델과 시각 강화학습", 0.44, -0.163, 0.116, 0.123, 67, 268], "59": [84, "안전, 강건 강화학습", 0.44, -0.108, 0.028, 0.067, 11, 178], "46": [85, "3D 포인트 클라우드 학습", 0.44, -0.026, 0.064, 0.058, 29, 172], "28": [86, "대조적 자기지도 학습 이론", 0.43, -0.298, 0.074, 0.173, 46, 162], "117": [87, "적대적 훈련과 강건성", 0.42, -0.294, 0.032, 0.129, 7, 217], "19": [88, "확산 정책과 궤적 계획", 0.42, 0.227, 0.112, 0.036, 55, 250], "119": [89, "비디오 생성과 편집", 0.42, 1.165, 0.168, 0.057, 31, 334], "43": [90, "GNN 메시지 전달과 표현력", 0.42, -0.301, 0.023, 0.121, 28, 481], "40": [91, "음성, 오디오와 음악 모델링", 0.41, 0.145, 0.123, 0.063, 56, 383], "79": [92, "신경 연산자와 PDE", 0.41, -0.044, 0.063, 0.044, 51, 271], "82": [93, "표현 유사도와 객체 중심 학습", 0.41, -0.106, 0.099, 0.111, 45, 342], "107": [94, "T2I 생성과 이미지 편집", 0.4, 0.337, 0.077, 0.049, 20, 391], "128": [95, "비전 트랜스포머(ViT)", 0.4, -0.104, 0.14, 0.079, 56, 215], "105": [96, "임베딩 기반 정보 검색", 0.39, 0.147, 0.135, 0.054, 19, 148], "112": [97, "지식 증류(KD)", 0.37, -0.132, 0.085, 0.085, 14, 130], "80": [98, "변분 추론과 베이지안 딥러닝", 0.37, -0.194, 0.067, 0.044, 80, 343], "124": [99, "탐색, 목표 조건 강화학습", 0.37, -0.115, 0.054, 0.068, 43, 427], "0": [100, "VAE와 희소 오토인코더", 0.37, -0.262, 0.086, 0.079, 56, 139], "5": [101, "오프라인 강화학습", 0.37, -0.234, 0.041, 0.074, 48, 365], "6": [102, "객체 탐지와 개방 어휘 탐지", 0.37, -0.002, 0.101, 0.057, 28, 247], "100": [103, "신경망 프루닝과 희소 학습", 0.35, -0.331, 0.171, 0.138, 43, 123], "111": [104, "CNN 구조와 학습 기법", 0.34, -0.336, 0.103, 0.103, 57, 320], "7": [105, "도메인 적응과 일반화", 0.34, -0.361, 0.053, 0.061, 36, 131], "2": [106, "모델 병합과 멀티태스크 학습", 0.34, -0.109, 0.206, 0.098, 29, 204], "25": [107, "퓨샷, 롱테일 분류", 0.31, -0.261, 0.073, 0.098, 12, 245], "32": [108, "연합학습 이질성과 개인화", 0.31, -0.14, 0.042, 0.07, 5, 402], "104": [109, "이미지 분할과 SAM", 0.29, -0.067, 0.175, 0.074, 17, 269]};
   var svg = fig.querySelector('svg'), tip = fig.querySelector('.rrm-tip');
@@ -335,7 +609,7 @@
 <p>극단적인 설정도 따로 봤다. 가중치를 모두 20%로 똑같이 두면 상위 10개 가운데 6개가 그대로 남는다. 진입 장벽 가중치를 0으로 두면 5개, 성장률을 50%로 올리면 5개, 리뷰어 평가를 40%로 올리면 7개가 남는다. LLM 중심 주제까지 순위에 넣으면 LLM과 VLM의 환각 탐지, LLM 에이전트 보안, LLM으로 사람의 행동을 시뮬레이션하는 연구, 사고 사슬 추론이 상위 10위에 들어온다.</p>
 <p>가중치를 직접 바꿔 볼 수 있게 조절기를 붙였다. 자기 조건에 맞게 가중치를 바꾸면 순위가 바로 다시 계산된다.</p>
 <div class="rrm-ex">
-<div class="rrm-presets" aria-label="가중치 예시"><button type="button" data-p="base" aria-pressed="true">기본 (GPU 몇 장)</button><button type="button" data-p="equal" aria-pressed="false">균등</button><button type="button" data-p="nobar" aria-pressed="false">진입 장벽 무시</button><button type="button" data-p="growth" aria-pressed="false">성장 위주</button><button type="button" data-p="value" aria-pressed="false">평가 위주</button></div>
+<div class="rrm-presets" role="group" aria-label="가중치 예시"><button type="button" data-p="base" aria-pressed="true">기본 (GPU 몇 장)</button><button type="button" data-p="equal" aria-pressed="false">균등</button><button type="button" data-p="nobar" aria-pressed="false">진입 장벽 무시</button><button type="button" data-p="growth" aria-pressed="false">성장 위주</button><button type="button" data-p="value" aria-pressed="false">평가 위주</button></div>
 <div class="rrm-sliders"><label><span>상대 성장률</span><input type="range" id="rrm-w-growth" min="0" max="100" step="1" value="30" data-k="growth" aria-label="상대 성장률 가중치"><b>30</b></label><label><span>리뷰어 평가</span><input type="range" id="rrm-w-value" min="0" max="100" step="1" value="20" data-k="value" aria-label="리뷰어 평가 가중치"><b>20</b></label><label><span>미해결 표현</span><input type="range" id="rrm-w-open" min="0" max="100" step="1" value="15" data-k="open" aria-label="미해결 표현 가중치"><b>15</b></label><label><span>낮은 진입 장벽</span><input type="range" id="rrm-w-lowbar" min="0" max="100" step="1" value="25" data-k="lowbar" aria-label="낮은 진입 장벽 가중치"><b>25</b></label><label><span>덜 붐빔</span><input type="range" id="rrm-w-uncrowd" min="0" max="100" step="1" value="10" data-k="uncrowd" aria-label="덜 붐빔 가중치"><b>10</b></label></div>
 <div class="rrm-opts"><label><input type="checkbox" id="rrm-llm" class="rrm-llm"> LLM 중심 주제도 순위에 넣기</label>
 <input type="search" id="rrm-q" class="rrm-q" placeholder="주제 검색 (예: 확산, 그래프, robot)" aria-label="주제 검색"></div>
@@ -433,11 +707,428 @@
 
 </section>
 
- ]]></description>
-  <category>연구 여지 지도</category>
-  <category>학회 동향</category>
-  <guid>https://priors-blog.github.io/posts/2026-09-24-research-room-map.html</guid>
-  <pubDate>Wed, 23 Sep 2026 15:00:00 GMT</pubDate>
-</item>
-</channel>
-</rss>
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/priors-blog\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>© 2026 Priors</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
