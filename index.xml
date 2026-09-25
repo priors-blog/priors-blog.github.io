@@ -6,13 +6,13 @@
       version="2.0">
 <channel>
 <title>Priors</title>
-<link>https://priors-blog.github.io/</link>
-<atom:link href="https://priors-blog.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://priors.kr/</link>
+<atom:link href="https://priors.kr/index.xml" rel="self" type="application/rss+xml"/>
 <description>AI와 머신러닝을 중심으로, 연구로서 의미가 큰 논문을 골라 읽고 그 논문이 남긴 질문을 적는 블로그입니다.</description>
 <image>
-<url>https://priors-blog.github.io/images/share.png</url>
+<url>https://priors.kr/images/share.png</url>
 <title>Priors</title>
-<link>https://priors-blog.github.io/</link>
+<link>https://priors.kr/</link>
 <height>76</height>
 <width>144</width>
 </image>
@@ -20,7 +20,7 @@
 <lastBuildDate>Thu, 24 Sep 2026 15:00:00 GMT</lastBuildDate>
 <item>
   <title>노드가 서로 다를 때 네트워크가 더 안정해지는 조건</title>
-  <link>https://priors-blog.github.io/posts/2026-09-25-science-bridge-disorder-stability.html</link>
+  <link>https://priors.kr/posts/2026-09-25-science-bridge-disorder-stability.html</link>
   <description><![CDATA[ 
 
 <!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
@@ -153,13 +153,13 @@
  ]]></description>
   <category>사이언스 브릿지</category>
   <category>복잡계 물리</category>
-  <guid>https://priors-blog.github.io/posts/2026-09-25-science-bridge-disorder-stability.html</guid>
+  <guid>https://priors.kr/posts/2026-09-25-science-bridge-disorder-stability.html</guid>
   <pubDate>Thu, 24 Sep 2026 15:00:00 GMT</pubDate>
-  <media:content url="https://priors-blog.github.io/posts/figs/2026-09-25-science-bridge-disorder-stability-share.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://priors.kr/posts/figs/2026-09-25-science-bridge-disorder-stability-share.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>데이터를 나눠 학습한 확산 모델은 왜 같은 그림을 그릴까</title>
-  <link>https://priors-blog.github.io/posts/2026-09-25-diffusion-consistency-rmt.html</link>
+  <link>https://priors.kr/posts/2026-09-25-diffusion-consistency-rmt.html</link>
   <description><![CDATA[ 
 
 <!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
@@ -197,7 +197,7 @@
 <p>저자들은 FFHQ32를 3만 장씩 겹치지 않게 나눠 UNet과 DiT를 각각 학습하고 같은 노이즈로 샘플링했다(3장, 그림 1). 네 모델의 결과는 서로 비슷했고, 각자 가장 가까운 학습 이미지보다 서로에게 더 가까웠다. 암기로는 설명되지 않는 일치다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figs/2026-09-25-diffusion-consistency-rmt-fig1.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="논문 그림 1. (A) 겹치지 않는 두 분할(각 3만 장)로 따로 학습한 UNet과 DiT가 같은 노이즈에서 만든 얼굴(가운데 두 줄)과, 각 분할에서 가장 가까운 학습 이미지(위아래). 오른쪽은 평균과 공분산만 쓰는 선형 이론의 결과다. (B) 생성 이미지 사이의 거리. 분할이나 아키텍처가 달라도 서로 가깝고(빨간색, 주황색 점선), 가장 가까운 학습 이미지와는 멀다(초록색 점선). 출처: Wang, Zavatone-Veth, Pehlevan (2026), CC BY 4.0."><img src="https://priors-blog.github.io/posts/figs/2026-09-25-diffusion-consistency-rmt-fig1.webp" class="img-fluid figure-img" alt="논문 그림 1. (A) 겹치지 않는 두 분할(각 3만 장)로 따로 학습한 UNet과 DiT가 같은 노이즈에서 만든 얼굴(가운데 두 줄)과, 각 분할에서 가장 가까운 학습 이미지(위아래). 오른쪽은 평균과 공분산만 쓰는 선형 이론의 결과다. (B) 생성 이미지 사이의 거리. 분할이나 아키텍처가 달라도 서로 가깝고(빨간색, 주황색 점선), 가장 가까운 학습 이미지와는 멀다(초록색 점선). 출처: Wang, Zavatone-Veth, Pehlevan (2026), CC BY 4.0."></a></p>
+<p><a href="figs/2026-09-25-diffusion-consistency-rmt-fig1.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="논문 그림 1. (A) 겹치지 않는 두 분할(각 3만 장)로 따로 학습한 UNet과 DiT가 같은 노이즈에서 만든 얼굴(가운데 두 줄)과, 각 분할에서 가장 가까운 학습 이미지(위아래). 오른쪽은 평균과 공분산만 쓰는 선형 이론의 결과다. (B) 생성 이미지 사이의 거리. 분할이나 아키텍처가 달라도 서로 가깝고(빨간색, 주황색 점선), 가장 가까운 학습 이미지와는 멀다(초록색 점선). 출처: Wang, Zavatone-Veth, Pehlevan (2026), CC BY 4.0."><img src="https://priors.kr/posts/figs/2026-09-25-diffusion-consistency-rmt-fig1.webp" class="img-fluid figure-img" alt="논문 그림 1. (A) 겹치지 않는 두 분할(각 3만 장)로 따로 학습한 UNet과 DiT가 같은 노이즈에서 만든 얼굴(가운데 두 줄)과, 각 분할에서 가장 가까운 학습 이미지(위아래). 오른쪽은 평균과 공분산만 쓰는 선형 이론의 결과다. (B) 생성 이미지 사이의 거리. 분할이나 아키텍처가 달라도 서로 가깝고(빨간색, 주황색 점선), 가장 가까운 학습 이미지와는 멀다(초록색 점선). 출처: Wang, Zavatone-Veth, Pehlevan (2026), CC BY 4.0."></a></p>
 <figcaption>논문 그림 1. (A) 겹치지 않는 두 분할(각 3만 장)로 따로 학습한 UNet과 DiT가 같은 노이즈에서 만든 얼굴(가운데 두 줄)과, 각 분할에서 가장 가까운 학습 이미지(위아래). 오른쪽은 평균과 공분산만 쓰는 선형 이론의 결과다. (B) 생성 이미지 사이의 거리. 분할이나 아키텍처가 달라도 서로 가깝고(빨간색, 주황색 점선), 가장 가까운 학습 이미지와는 멀다(초록색 점선). 출처: Wang, Zavatone-Veth, Pehlevan (2026), CC BY 4.0.</figcaption>
 </figure>
 </div>
@@ -324,13 +324,13 @@
   <category>ML 논문</category>
   <category>생성 모델</category>
   <category>딥러닝의 과학</category>
-  <guid>https://priors-blog.github.io/posts/2026-09-25-diffusion-consistency-rmt.html</guid>
+  <guid>https://priors.kr/posts/2026-09-25-diffusion-consistency-rmt.html</guid>
   <pubDate>Thu, 24 Sep 2026 15:00:00 GMT</pubDate>
-  <media:content url="https://priors-blog.github.io/posts/figs/2026-09-25-diffusion-consistency-rmt-share.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://priors.kr/posts/figs/2026-09-25-diffusion-consistency-rmt-share.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>LLM 논문이 절반에 가까워진 학회에서, 연구할 틈은 어디에 남았을까</title>
-  <link>https://priors-blog.github.io/posts/2026-09-24-research-room-map.html</link>
+  <link>https://priors.kr/posts/2026-09-24-research-room-map.html</link>
   <description><![CDATA[ 
 
 <!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
@@ -753,9 +753,9 @@
  ]]></description>
   <category>연구 여지 지도</category>
   <category>학회 동향</category>
-  <guid>https://priors-blog.github.io/posts/2026-09-24-research-room-map.html</guid>
+  <guid>https://priors.kr/posts/2026-09-24-research-room-map.html</guid>
   <pubDate>Wed, 23 Sep 2026 15:00:00 GMT</pubDate>
-  <media:content url="https://priors-blog.github.io/posts/figs/2026-09-24-research-room-map-share.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://priors.kr/posts/figs/2026-09-24-research-room-map-share.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>
 </rss>
