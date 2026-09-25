@@ -20,7 +20,7 @@
 <lastBuildDate>Thu, 24 Sep 2026 15:00:00 GMT</lastBuildDate>
 <item>
   <title>노드가 서로 다를 때 네트워크가 더 안정해지는 조건</title>
-  <link>https://priors.kr/posts/2026-09-25-science-bridge-disorder-stability.html</link>
+  <link>https://priors.kr/posts/2026-09-25-science-bridge-disorder-stability</link>
   <description><![CDATA[ 
 
 <!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
@@ -153,13 +153,13 @@
  ]]></description>
   <category>사이언스 브릿지</category>
   <category>복잡계 물리</category>
-  <guid>https://priors.kr/posts/2026-09-25-science-bridge-disorder-stability.html</guid>
+  <guid>https://priors.kr/posts/2026-09-25-science-bridge-disorder-stability</guid>
   <pubDate>Thu, 24 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-25-science-bridge-disorder-stability-share.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>데이터를 나눠 학습한 확산 모델은 왜 같은 그림을 그릴까</title>
-  <link>https://priors.kr/posts/2026-09-25-diffusion-consistency-rmt.html</link>
+  <link>https://priors.kr/posts/2026-09-25-diffusion-consistency-rmt</link>
   <description><![CDATA[ 
 
 <!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
@@ -324,13 +324,13 @@
   <category>ML 논문</category>
   <category>생성 모델</category>
   <category>딥러닝의 과학</category>
-  <guid>https://priors.kr/posts/2026-09-25-diffusion-consistency-rmt.html</guid>
+  <guid>https://priors.kr/posts/2026-09-25-diffusion-consistency-rmt</guid>
   <pubDate>Thu, 24 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-25-diffusion-consistency-rmt-share.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>LLM 논문이 절반에 가까워진 학회에서, 연구할 틈은 어디에 남았을까</title>
-  <link>https://priors.kr/posts/2026-09-24-research-room-map.html</link>
+  <link>https://priors.kr/posts/2026-09-24-research-room-map</link>
   <description><![CDATA[ 
 
 <!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
@@ -753,7 +753,7 @@
  ]]></description>
   <category>연구 여지 지도</category>
   <category>학회 동향</category>
-  <guid>https://priors.kr/posts/2026-09-24-research-room-map.html</guid>
+  <guid>https://priors.kr/posts/2026-09-24-research-room-map</guid>
   <pubDate>Wed, 23 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-24-research-room-map-share.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
