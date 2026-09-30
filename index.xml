@@ -17,7 +17,252 @@
 <width>144</width>
 </image>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Mon, 28 Sep 2026 15:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 29 Sep 2026 15:00:00 GMT</lastBuildDate>
+<item>
+  <title>은닉 차원보다 긴 기억을 RNN은 어떻게 겹쳐 담을까</title>
+  <link>https://priors.kr/posts/2026-09-30-rnn-temporal-superposition</link>
+  <description><![CDATA[ 
+
+<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+
+
+
+<section id="줄-요약" class="level2">
+<h2 class="anchored" data-anchor-id="줄-요약">3줄 요약</h2>
+<ul>
+<li>특징이 뉴런보다 많으면 신경망은 특징 방향을 조금씩 겹쳐 담는다. 이를 중첩(superposition)이라 한다. 이 논문은 같은 일이 시간 축에서도 일어난다는 것을 보인다. RNN은 같은 입력이라도 들어온 지 몇 스텝 됐는지에 따라 다른 방향에 담아야 해서, 오래 기억할수록 은닉 상태가 금세 비좁아진다.</li>
+<li>선형 RNN의 기대 손실을 네 항으로 나누면 학습된 모양이 설명된다. 선형 RNN은 특징을 돌리면서 줄여 나선을 그리며 잊고, 출력에 ReLU가 붙으면 출력 방향 반대편 절반을 아무것도 잘못 읽히지 않는 “간섭 없는 공간”으로 쓴다.</li>
+<li>입력이 드물어지면 기하가 조밀 국면에서 희소 국면으로 급격히 바뀐다. 담을 특징 수와 기억 길이가 함께 늘면 RNN은 가장 중요한 특징 하나만 끝까지 붙든다.</li>
+</ul>
+</section>
+<section id="선정-이유" class="level2">
+<h2 class="anchored" data-anchor-id="선정-이유">선정 이유</h2>
+<p>ICLR 2026에서 구두 발표(Oral)로 뽑혔고 리뷰 점수는 8, 8, 8, 6이었다. 블로그의 연구 여지 지도에서 이 논문이 속한 ’계산 신경과학과 신경 회로’는 LLM 중심 주제를 뺀 109개 주제 가운데 5위다. 초록에 “아직 잘 모른다”는 식의 표현이 나오는 비율(19%)은 LLM이 아닌 주제 중 가장 높다. 10월 두 번째 테마인 ’뇌 데이터와 계산 신경과학’의 첫 글로 고른 이유다.</p>
+<ol type="1">
+<li><strong>전후로 아는 것이 달라졌나.</strong> 달라졌다. 지금까지 중첩은 특징 수가 차원보다 많을 때 생기는 공간의 문제로만 다뤄졌다. 이 논문은 기억 길이도 같은 압박을 만든다는 것을 보이고, 간섭을 투영 간섭과 조합 간섭 두 가지로 나눠 손실식으로 정리했다. 학습된 모양을 “이렇게 생겼다”에서 “그래서 이렇게 생긴다”로 설명할 수 있게 됐다.</li>
+<li><strong>새 질문을 여는가.</strong> 연다. 기억할 시점이 정해져 있지 않은 과제, 큰 순환 모델, 실제 뇌 기록에서 시간 중첩이 어떻게 나타나는지가 모두 열려 있다.</li>
+<li><strong>일반화될 근거가 있나.</strong> 부분적으로 있다. 이론은 선형 순환에서 정확하고, ReLU가 들어간 모델에서는 시뮬레이션으로 같은 경향을 확인했다. 은닉 차원 100, 특징 75개로 키운 실험도 더했다(부록 G). 다만 과제는 사실상 하나(k-지연 과제)다.</li>
+<li><strong>증거가 주장만큼 강한가.</strong> 이론이 예측한 손실은 실제 손실 곡선과 잘 겹친다(그림 2). 반면 은닉 차원이 2일 때는 최적화가 어려워, 모델 1,000개 가운데 예측한 모양에 도달한 비율이 비선형 RNN 기준 8.2~31.4%에 그친다(부록 I.1, 표 1). 본문 그림은 손실이 가장 낮은 모델을 골라 그렸다.</li>
+</ol>
+</section>
+<section id="왜-중요한가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-중요한가">왜 중요한가</h2>
+<p>신경망 해석 연구에서 가장 골치 아픈 현상 가운데 하나가 다의성(polysemanticity)이다. 뉴런 하나가 서로 관계없는 여러 입력에 반응하는 현상이다. Elhage 외(2022)의 장난감 모델 연구는 이를 중첩 가설로 설명했다. 특징이 드물게 나타난다면 특징 수보다 적은 뉴런에 방향을 조금씩 겹쳐 담는 편이 이득이라는 설명이다. 그 뒤로 희소 오토인코더(sparse autoencoder)로 겹친 특징을 풀어내는 연구가 크게 늘었지만, 중첩이 만드는 기하 자체를 따진 연구는 상대적으로 적다(Sharkey 외, 2025).</p>
+<p>순환 모델에는 피드포워드 모델에 없는 압박이 하나 더 있다. 시간이다. 지나간 입력을 은닉 상태에 담아 두어야 하고, 담아 둘 시간이 길수록 같은 차원에 넣어야 할 정보가 늘어난다. 이 문제는 두 분야에 동시에 걸려 있다. 머신러닝에서는 S4, LRU, Mamba처럼 선형 순환을 쓰는 모델이 긴 시퀀스를 효율적으로 다루는 대안으로 다시 주목받고 있다. 신경과학에서는 RNN이 동물의 신경 활동을 잘 재현해 인지 모델로 널리 쓰이고, 제한된 자원으로 정보를 잠시 붙드는 작업 기억(working memory)이 핵심 주제다. 이 논문은 두 분야에 같은 언어를 건넨다.</p>
+</section>
+<section id="핵심-아이디어" class="level2">
+<h2 class="anchored" data-anchor-id="핵심-아이디어">핵심 아이디어</h2>
+<section id="직관-무엇과-함께-언제를-담는다" class="level3">
+<h3 class="anchored" data-anchor-id="직관-무엇과-함께-언제를-담는다">직관: “무엇”과 함께 “언제”를 담는다</h3>
+<p>공간 중첩부터 보자. 입력 특징이 5개(A~E)이고 은닉 차원이 2개라면, 특징이 드물게 나타날 때는 다섯 방향을 오각형으로 펼쳐 담는 것이 최선이다(그림 1a). 가끔 두 특징이 함께 켜지면 서로 간섭하지만, 드물게 켜지는 특징이라면 그 손해보다 더 많은 특징을 담는 이득이 크다.</p>
+<p>시간 중첩은 특징이 하나뿐이어도 생긴다(그림 1b). 입력 A가 들어오면 RNN은 스텝이 지날 때마다 A의 표현을 다른 방향으로 옮긴다. 방금 들어온 A와 다섯 스텝 전에 들어온 A는 같은 입력이지만 서로 다른 방향에 놓인다. 그래야 언제 들어왔는지를 구분해 제때 꺼낼 수 있다. 기억해야 할 기간이 은닉 차원보다 길어지면 RNN은 오래된 것을 잊거나 방향들을 겹쳐 담는 수밖에 없다. 논문은 이를 시간 중첩(temporal superposition)이라 부른다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figs/2026-09-30-rnn-temporal-superposition-fig1.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="논문 그림 1. RNN에서 일어나는 두 가지 중첩과 두 가지 간섭. 왼쪽 범례에서 모양은 특징 A~E를, 색은 입력의 나이를 나타낸다. 특징은 오른쪽으로 갈수록 덜 중요하고, 색은 빨강이 방금 들어온 입력, 초록이 오래된 입력이다. (a) 공간 중첩. 특징 5개를 은닉 차원 2개에 담아야 하고 특징이 드물게 켜지면, 방향을 서로 비스듬히 겹쳐 담는 편이 낫다. (b) 시간 중첩. 특징이 A 하나뿐이어도 은닉 차원 수보다 많은 스텝 동안 붙들어야 하면, A는 나이마다 다른 방향에 놓인다(빨강은 방금 들어온 A, 초록은 다섯 스텝 된 A). 입력이 드물면 출력 방향 반대편의 간섭 없는 공간을 쓰는 편이 낫다. (c) 투영 간섭. 한 특징의 활성(검정)을 출력 방향(파란 화살표)으로 읽으면 다른 특징(회색)의 활성처럼 보인다(빨간 점선). (d) 조합 간섭. 여러 특징의 활성(검정)이 더해져 다른 특징(회색)을 흉내 낸다(빨간 점선). 출처: Sharma, Proca, Prieto, Mediano (2026), CC BY 4.0."><img src="https://priors.kr/posts/figs/2026-09-30-rnn-temporal-superposition-fig1.webp" class="img-fluid figure-img" alt="논문 그림 1. RNN에서 일어나는 두 가지 중첩과 두 가지 간섭. 왼쪽 범례에서 모양은 특징 A~E를, 색은 입력의 나이를 나타낸다. 특징은 오른쪽으로 갈수록 덜 중요하고, 색은 빨강이 방금 들어온 입력, 초록이 오래된 입력이다. (a) 공간 중첩. 특징 5개를 은닉 차원 2개에 담아야 하고 특징이 드물게 켜지면, 방향을 서로 비스듬히 겹쳐 담는 편이 낫다. (b) 시간 중첩. 특징이 A 하나뿐이어도 은닉 차원 수보다 많은 스텝 동안 붙들어야 하면, A는 나이마다 다른 방향에 놓인다(빨강은 방금 들어온 A, 초록은 다섯 스텝 된 A). 입력이 드물면 출력 방향 반대편의 간섭 없는 공간을 쓰는 편이 낫다. (c) 투영 간섭. 한 특징의 활성(검정)을 출력 방향(파란 화살표)으로 읽으면 다른 특징(회색)의 활성처럼 보인다(빨간 점선). (d) 조합 간섭. 여러 특징의 활성(검정)이 더해져 다른 특징(회색)을 흉내 낸다(빨간 점선). 출처: Sharma, Proca, Prieto, Mediano (2026), CC BY 4.0."></a></p>
+<figcaption>논문 그림 1. RNN에서 일어나는 두 가지 중첩과 두 가지 간섭. 왼쪽 범례에서 모양은 특징 A~E를, 색은 입력의 나이를 나타낸다. 특징은 오른쪽으로 갈수록 덜 중요하고, 색은 빨강이 방금 들어온 입력, 초록이 오래된 입력이다. (a) 공간 중첩. 특징 5개를 은닉 차원 2개에 담아야 하고 특징이 드물게 켜지면, 방향을 서로 비스듬히 겹쳐 담는 편이 낫다. (b) 시간 중첩. 특징이 A 하나뿐이어도 은닉 차원 수보다 많은 스텝 동안 붙들어야 하면, A는 나이마다 다른 방향에 놓인다(빨강은 방금 들어온 A, 초록은 다섯 스텝 된 A). 입력이 드물면 출력 방향 반대편의 간섭 없는 공간을 쓰는 편이 낫다. (c) 투영 간섭. 한 특징의 활성(검정)을 출력 방향(파란 화살표)으로 읽으면 다른 특징(회색)의 활성처럼 보인다(빨간 점선). (d) 조합 간섭. 여러 특징의 활성(검정)이 더해져 다른 특징(회색)을 흉내 낸다(빨간 점선). 출처: Sharma, Proca, Prieto, Mediano (2026), CC BY 4.0.</figcaption>
+</figure>
+</div>
+</section>
+<section id="방법-k-지연-과제와-나이별-특징-방향" class="level3">
+<h3 class="anchored" data-anchor-id="방법-k-지연-과제와-나이별-특징-방향">방법: k-지연 과제와 나이별 특징 방향</h3>
+<p>은닉 상태를 <img src="https://latex.codecogs.com/png.latex?h_t%20=%20W_x%20x_t%20+%20W_h%20%5Csigma_h(h_%7Bt-1%7D)">, 출력을 <img src="https://latex.codecogs.com/png.latex?%5Chat%20y_t%20=%20%5Csigma_y(W_y%5E%5Ctop%20h_t)">로 두자(식 1). 순환이 선형이면 은닉 상태는 지나간 입력의 합으로 풀린다(식 3).</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ah_t=%5Csum_%7Bs=0%7D%5E%7Bt-1%7D%20W_h%5E%7Bs%7DW_x%5C,x_%7Bt-s%7D=%5Csum_%7Bs=0%7D%5E%7Bt-1%7D%20w_s%5C,x_%7Bt-s%7D%0A"></p>
+<p>여기서 <img src="https://latex.codecogs.com/png.latex?s">는 입력이 RNN 안에 머문 스텝 수, 곧 입력의 나이다. 나이가 <img src="https://latex.codecogs.com/png.latex?s">인 입력은 방향 <img src="https://latex.codecogs.com/png.latex?w_s">에 담긴다. 과제는 k-지연 과제다(Jaeger, 2002). 입력 수열을 <img src="https://latex.codecogs.com/png.latex?k">스텝 늦게 그대로 내보내야 하므로(<img src="https://latex.codecogs.com/png.latex?y_t=x_%7Bt-k%7D">) <img src="https://latex.codecogs.com/png.latex?k">가 기억 부담을 직접 조절한다. <img src="https://latex.codecogs.com/png.latex?k=0">이면 Elhage 외(2022)의 피드포워드 설정과 같아진다.</p>
+<p>이 틀에서 간섭은 두 종류로 나뉜다(3.4절). 투영 간섭(projection interference)은 나이가 다른 방향이 출력 방향 <img src="https://latex.codecogs.com/png.latex?w_y">에 비스듬히 걸려, 엉뚱한 시점의 입력이 지금 꺼낼 입력처럼 읽히는 경우다. 조합 간섭(composition interference)은 동시에 켜진 두 입력의 방향을 더한 벡터가 마침 다른 나이의 방향을 흉내 내는 경우다. 들어온 적 없는 입력이 들어온 것처럼 보이게 된다.</p>
+<figure class="ill figure"><div class="ill-panels"><div class="ill-panel"><svg viewbox="0 0 380 300" aria-label="3-지연 과제. 드문드문 들어온 입력은 스텝마다 나이가 하나씩 늘고, 나이가 3이 되면 출력으로 나간다"><rect x="274" y="32" width="32" height="214" rx="8" fill="#eef1f7"></rect><text x="290" y="22" font-size="13.5" font-weight="700" fill="#1f2533" text-anchor="middle">지금</text><text x="14" y="22" font-size="14.5" font-weight="600" text-anchor="start"><tspan font-size="14.5" fill="#1f2533">정답 </tspan><tspan font-size="14.5" fill="#1f2533" font-style="italic">y</tspan><tspan dy="4.3" font-size="11.6" fill="#1f2533" font-style="italic">t</tspan><tspan dy="-4.3" font-size="14.5" fill="#1f2533"> = </tspan><tspan font-size="14.5" fill="#1f2533" font-style="italic">x</tspan><tspan dy="4.3" font-size="11.6" fill="#1f2533" font-style="italic">t</tspan><tspan font-size="11.6" fill="#1f2533">−3</tspan></text><text x="80" y="52" font-size="12.5" font-weight="400" text-anchor="middle"><tspan font-size="12.5" fill="#5a6272" font-style="italic">t</tspan><tspan font-size="12.5" fill="#5a6272">−6</tspan></text><text x="115" y="52" font-size="12.5" font-weight="400" text-anchor="middle"><tspan font-size="12.5" fill="#5a6272" font-style="italic">t</tspan><tspan font-size="12.5" fill="#5a6272">−5</tspan></text><text x="150" y="52" font-size="12.5" font-weight="400" text-anchor="middle"><tspan font-size="12.5" fill="#5a6272" font-style="italic">t</tspan><tspan font-size="12.5" fill="#5a6272">−4</tspan></text><text x="185" y="52" font-size="12.5" font-weight="400" text-anchor="middle"><tspan font-size="12.5" fill="#5a6272" font-style="italic">t</tspan><tspan font-size="12.5" fill="#5a6272">−3</tspan></text><text x="220" y="52" font-size="12.5" font-weight="400" text-anchor="middle"><tspan font-size="12.5" fill="#5a6272" font-style="italic">t</tspan><tspan font-size="12.5" fill="#5a6272">−2</tspan></text><text x="255" y="52" font-size="12.5" font-weight="400" text-anchor="middle"><tspan font-size="12.5" fill="#5a6272" font-style="italic">t</tspan><tspan font-size="12.5" fill="#5a6272">−1</tspan></text><text x="290" y="52" font-size="13.5" font-weight="700" text-anchor="middle"><tspan font-size="13.5" fill="#1f2533" font-style="italic">t</tspan></text><text x="325" y="52" font-size="12.5" font-weight="400" text-anchor="middle"><tspan font-size="12.5" fill="#5a6272" font-style="italic">t</tspan><tspan font-size="12.5" fill="#5a6272">+1</tspan></text><text x="360" y="52" font-size="12.5" font-weight="400" text-anchor="middle"><tspan font-size="12.5" fill="#5a6272" font-style="italic">t</tspan><tspan font-size="12.5" fill="#5a6272">+2</tspan></text><line x1="66" y1="98" x2="374" y2="98" stroke="#c9cfdb" stroke-width="1.2" stroke-linecap="butt"></line><text x="14" y="103" font-size="13.5" font-weight="600" fill="#1f2533" text-anchor="start">입력</text><line x1="66" y1="236" x2="374" y2="236" stroke="#c9cfdb" stroke-width="1.2" stroke-linecap="butt"></line><text x="14" y="241" font-size="13.5" font-weight="600" fill="#1f2533" text-anchor="start">정답</text><circle cx="80" cy="98" r="2.4" fill="#8b93a3"></circle><circle cx="80" cy="236" r="2.4" fill="#8b93a3"></circle><circle cx="115" cy="98" r="2.4" fill="#8b93a3"></circle><circle cx="115" cy="236" r="2.4" fill="#8b93a3"></circle><circle cx="150" cy="98" r="2.4" fill="#8b93a3"></circle><circle cx="150" cy="236" r="2.4" fill="#8b93a3"></circle><line x1="185" y1="98" x2="185" y2="65.7" stroke="#1f2533" stroke-width="5" stroke-linecap="round"></line><circle cx="185" cy="236" r="2.4" fill="#8b93a3"></circle><circle cx="220" cy="98" r="2.4" fill="#8b93a3"></circle><circle cx="220" cy="236" r="2.4" fill="#8b93a3"></circle><line x1="255" y1="98" x2="255" y2="76.9" stroke="#1f2533" stroke-width="5" stroke-linecap="round"></line><circle cx="255" cy="236" r="2.4" fill="#8b93a3"></circle><circle cx="290" cy="98" r="2.4" fill="#8b93a3"></circle><line x1="290" y1="236" x2="290" y2="203.7" stroke="#1f2533" stroke-width="5" stroke-linecap="round"></line><circle cx="325" cy="98" r="2.4" fill="#8b93a3"></circle><circle cx="325" cy="236" r="2.4" fill="#8b93a3"></circle><circle cx="360" cy="98" r="2.4" fill="#8b93a3"></circle><line x1="360" y1="236" x2="360" y2="214.9" stroke="#1f2533" stroke-width="5" stroke-linecap="round"></line><text x="14" y="153" font-size="13.5" font-weight="600" fill="#1f2533" text-anchor="start">나이</text><rect x="171.5" y="151.5" width="132" height="27" rx="13.5" fill="#f1f3f7"></rect><line x1="185" y1="102" x2="185" y2="145.8" stroke="#e2412f" stroke-width="1.6" stroke-linecap="round"></line><polygon points="185,151 181.7,144.8 188.3,144.8" fill="#e2412f"></polygon><circle cx="185" cy="165" r="10.5" fill="#f9d9d5" stroke="#e2412f" stroke-width="2"></circle><text x="185" y="170" font-size="13.5" font-weight="700" fill="#c3321f" text-anchor="middle">0</text><circle cx="220" cy="165" r="10.5" fill="#fce2d4" stroke="#ee6c28" stroke-width="2"></circle><text x="220" y="170" font-size="13.5" font-weight="700" fill="#bf5215" text-anchor="middle">1</text><circle cx="255" cy="165" r="10.5" fill="#fcebd2" stroke="#f29a1f" stroke-width="2"></circle><text x="255" y="170" font-size="13.5" font-weight="700" fill="#a86400" text-anchor="middle">2</text><circle cx="290" cy="165" r="10.5" fill="#f4edd0" stroke="#c9a412" stroke-width="2"></circle><text x="290" y="170" font-size="13.5" font-weight="700" fill="#866b00" text-anchor="middle">3</text><line x1="290" y1="179" x2="290" y2="193.4" stroke="#c9a412" stroke-width="1.8" stroke-linecap="round"></line><polygon points="290,198.7 286.7,192.5 293.3,192.5" fill="#c9a412"></polygon><rect x="241.5" y="117.5" width="132" height="27" rx="13.5" fill="#f1f3f7"></rect><line x1="255" y1="102" x2="255" y2="111.8" stroke="#e2412f" stroke-width="1.6" stroke-linecap="round"></line><polygon points="255,117 251.7,110.8 258.3,110.8" fill="#e2412f"></polygon><circle cx="255" cy="131" r="10.5" fill="#f9d9d5" stroke="#e2412f" stroke-width="2"></circle><text x="255" y="136" font-size="13.5" font-weight="700" fill="#c3321f" text-anchor="middle">0</text><circle cx="290" cy="131" r="10.5" fill="#fce2d4" stroke="#ee6c28" stroke-width="2"></circle><text x="290" y="136" font-size="13.5" font-weight="700" fill="#bf5215" text-anchor="middle">1</text><circle cx="325" cy="131" r="10.5" fill="#fcebd2" stroke="#f29a1f" stroke-width="2"></circle><text x="325" y="136" font-size="13.5" font-weight="700" fill="#a86400" text-anchor="middle">2</text><circle cx="360" cy="131" r="10.5" fill="#f4edd0" stroke="#c9a412" stroke-width="2"></circle><text x="360" y="136" font-size="13.5" font-weight="700" fill="#866b00" text-anchor="middle">3</text><line x1="360" y1="145" x2="360" y2="204.7" stroke="#c9a412" stroke-width="1.8" stroke-linecap="round"></line><polygon points="360,209.9 356.7,203.7 363.3,203.7" fill="#c9a412"></polygon><text x="165" y="169.5" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="end">3스텝 동안 붙든다</text><text x="14" y="284" font-size="14.5" font-weight="600" text-anchor="start"><tspan font-size="14.5" fill="#1f2533">지금 은닉 상태  </tspan><tspan font-size="14.5" fill="#1f2533" font-style="italic">h</tspan><tspan dy="4.3" font-size="11.6" fill="#1f2533" font-style="italic">t</tspan><tspan dy="-4.3" font-size="14.5" fill="#1f2533"> = </tspan><tspan font-size="14.5" fill="#bf5215" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#bf5215">1</tspan><tspan dy="-4.3" font-size="14.5" fill="#bf5215" font-style="italic">x</tspan><tspan dy="4.3" font-size="11.6" fill="#bf5215" font-style="italic">t</tspan><tspan font-size="11.6" fill="#bf5215">−1</tspan><tspan dy="-4.3" font-size="14.5" fill="#1f2533"> + </tspan><tspan font-size="14.5" fill="#866b00" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#866b00">3</tspan><tspan dy="-4.3" font-size="14.5" fill="#866b00" font-style="italic">x</tspan><tspan dy="4.3" font-size="11.6" fill="#866b00" font-style="italic">t</tspan><tspan font-size="11.6" fill="#866b00">−3</tspan></text></svg><p class="ill-sub"><b>(가)</b> 3-지연 과제와 입력의 나이</p></div><div class="ill-panel"><svg viewbox="0 0 380 300" aria-label="나이별 방향이 돌며 줄어드는 나선. 출력 방향은 나이 3의 방향에 맞춰져 있고, 나이 1의 방향도 출력 방향으로 0.47만큼 읽힌다"><polygon points="146,198 305.7,139.9 146,139.9" fill="#fbe3ef" fill-opacity="0.85"></polygon><line x1="146" y1="260" x2="146" y2="198" stroke="#2f6fe4" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="1 6"></line><line x1="146" y1="198" x2="146" y2="37.5" stroke="#2f6fe4" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="1 6"></line><polygon points="146,30 150.7,38.8 141.3,38.8" fill="#2f6fe4"></polygon><line x1="146" y1="198" x2="146" y2="139.9" stroke="#df4f94" stroke-width="8" stroke-linecap="butt" stroke-opacity="0.35"></line><polyline points="339.2,249.8 339.1,245.1 339,240.4 338.7,235.8 338.4,231.2 337.9,226.7 337.4,222.1 336.7,217.7 335.9,213.2 335.1,208.9 334.2,204.5 333.1,200.2 332,196 330.8,191.8 329.5,187.7 328.1,183.6 326.6,179.6 325.1,175.6 323.4,171.7 321.7,167.9 320,164.1 318.1,160.4 316.2,156.7 314.2,153.1 312.1,149.6 310,146.2 307.8,142.8 305.5,139.5 303.2,136.3 300.8,133.1 298.4,130 295.9,127 293.3,124.1 290.7,121.2 288.1,118.4 285.4,115.7 282.7,113.1 279.9,110.5 277.1,108.1 274.2,105.7 271.3,103.4 268.4,101.1 265.4,99 262.5,96.9 259.4,94.9 256.4,93 253.3,91.1 250.3,89.4 247.1,87.7 244,86.1 240.9,84.6 237.7,83.2 234.6,81.8 231.4,80.6 228.2,79.4 225,78.3 221.8,77.2 218.6,76.3 215.4,75.4 212.2,74.6 209,73.9 205.8,73.3 202.6,72.7 199.4,72.2 196.2,71.8 193.1,71.4 189.9,71.2 186.8,71 183.7,70.9 180.5,70.8 177.5,70.8 174.4,70.9 171.3,71.1 168.3,71.3 165.3,71.6 162.3,71.9 159.4,72.4 156.5,72.9 153.6,73.4 150.7,74 147.9,74.7 145.1,75.4 142.3,76.2 139.6,77.1 136.9,78 134.3,78.9 131.7,79.9 129.1,81 126.5,82.1 124,83.3 121.6,84.5 119.2,85.8 116.8,87.1 114.5,88.4 112.2,89.8 110,91.3 107.8,92.8 105.7,94.3 103.6,95.8 101.5,97.4 99.6,99.1 97.6,100.7 95.7,102.4 93.9,104.2 92.1,105.9 90.3,107.7 88.7,109.6 87,111.4 85.4,113.3 83.9,115.2 82.4,117.1 81,119.1 79.6,121 78.3,123 77,125 75.8,127 74.7,129 73.6,131.1 72.5,133.1 71.5,135.2 70.5,137.3 69.6,139.4 68.8,141.5 68,143.6 67.3,145.7 66.6,147.8 66,149.9 65.4,152 64.8,154.1 64.4,156.2 63.9,158.3 63.5,160.4 63.2,162.5 62.9,164.6 62.7,166.7 62.5,168.8 62.4,170.8 62.3,172.9 62.3,174.9 62.3,177 62.3,179 62.4,181 62.5,183 62.7,185 63,186.9 63.2,188.9 63.5,190.8 63.9,192.7 64.3,194.6 64.7,196.5 65.2,198.3 65.7,200.1 66.3,201.9 66.9,203.7 67.5,205.5 68.2,207.2 68.9,208.9 69.6,210.6 70.3,212.2 71.1,213.8 72,215.4 72.8,217 73.7,218.5 74.6,220 75.6,221.5 76.6,222.9 77.6,224.3 78.6,225.7 79.6,227.1 80.7,228.4 81.8,229.7 82.9,230.9 84.1,232.1 85.2,233.3 86.4,234.5 87.6,235.6 88.8,236.7 90,237.7 91.3,238.7 92.6,239.7 93.8,240.7 95.1,241.6 96.4,242.4 97.7,243.3 99.1,244.1 100.4,244.9 101.7,245.6 103.1,246.3 104.5,247 105.8,247.6 107.2,248.2 108.6,248.7 110,249.3 111.3,249.8 112.7,250.2" fill="none" stroke="#8b93a3" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3 4"></polyline><polygon points="119.7,252 111.9,253.9 113.8,246.6" fill="#8b93a3"></polygon><line x1="146" y1="198" x2="73.1" y2="217.5" stroke="#0fa3a0" stroke-width="2.7" stroke-linecap="round"></line><circle cx="73.1" cy="217.5" r="5.8" fill="#0fa3a0" stroke="#ffffff" stroke-width="1.4"></circle><line x1="146" y1="198" x2="62.6" y2="167.6" stroke="#2f9e5a" stroke-width="2.7" stroke-linecap="round"></line><circle cx="62.6" cy="167.6" r="5.8" fill="#2f9e5a" stroke="#ffffff" stroke-width="1.4"></circle><line x1="146" y1="198" x2="86.1" y2="112.5" stroke="#86ad2b" stroke-width="2.7" stroke-linecap="round"></line><circle cx="86.1" cy="112.5" r="5.8" fill="#86ad2b" stroke="#ffffff" stroke-width="1.4"></circle><line x1="146" y1="198" x2="146" y2="75.2" stroke="#c9a412" stroke-width="3.4" stroke-linecap="round"></line><polygon points="146,64.7 148.8,71.4 156,71.9 150.5,76.6 152.2,83.7 146,79.9 139.8,83.7 141.5,76.6 136,71.9 143.2,71.4" fill="#c9a412" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"></polygon><line x1="146" y1="198" x2="228.9" y2="79.6" stroke="#f29a1f" stroke-width="2.7" stroke-linecap="round"></line><circle cx="228.9" cy="79.6" r="5.8" fill="#f29a1f" stroke="#ffffff" stroke-width="1.4"></circle><line x1="146" y1="198" x2="305.7" y2="139.9" stroke="#ee6c28" stroke-width="2.7" stroke-linecap="round"></line><circle cx="305.7" cy="139.9" r="5.8" fill="#ee6c28" stroke="#ffffff" stroke-width="1.4"></circle><line x1="146" y1="198" x2="339.2" y2="249.8" stroke="#e2412f" stroke-width="2.7" stroke-linecap="round"></line><circle cx="339.2" cy="249.8" r="5.8" fill="#e2412f" stroke="#ffffff" stroke-width="1.4"></circle><line x1="305.7" y1="139.9" x2="146" y2="139.9" stroke="#df4f94" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="5 4"></line><circle cx="146" cy="139.9" r="3.8" fill="#df4f94" stroke="#ffffff" stroke-width="1.2"></circle><circle cx="146" cy="198" r="4" fill="#1f2533"></circle><text x="356.6" y="259.4" font-size="14.5" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"><tspan font-size="14.5" fill="#c3321f" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#c3321f">0</tspan></text><text x="322.7" y="138.7" font-size="14.5" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"><tspan font-size="14.5" fill="#bf5215" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#bf5215">1</tspan></text><text x="239.2" y="69.9" font-size="14.5" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"><tspan font-size="14.5" fill="#a86400" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#a86400">2</tspan></text><text x="160" y="80.2" font-size="14.5" font-weight="700" text-anchor="start" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"><tspan font-size="14.5" fill="#866b00" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#866b00">3</tspan></text><text x="75.8" y="102.7" font-size="14.5" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"><tspan font-size="14.5" fill="#56790f" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#56790f">4</tspan></text><text x="45.7" y="166.5" font-size="14.5" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"><tspan font-size="14.5" fill="#25804a" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#25804a">5</tspan></text><text x="55.8" y="227.2" font-size="14.5" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"><tspan font-size="14.5" fill="#0b7f7c" font-style="italic">w</tspan><tspan dy="4.3" font-size="11.6" fill="#0b7f7c">6</tspan></text><text x="156" y="38" font-size="13.5" font-weight="600" text-anchor="start"><tspan font-size="13.5" fill="#2459c2">출력 방향 </tspan><tspan font-size="13.5" fill="#2459c2" font-style="italic">w</tspan><tspan dy="4" font-size="10.8" fill="#2459c2" font-style="italic">y</tspan></text><text x="132" y="55.2" font-size="13.5" font-weight="600" text-anchor="end"><tspan font-size="13.5" fill="#866b00" font-style="italic">k</tspan><tspan font-size="13.5" fill="#866b00"> 스텝 뒤:</tspan></text><text x="132" y="72.7" font-size="13.5" font-weight="600" fill="#866b00" text-anchor="end">지금 꺼낼 입력</text><text x="343.2" y="279.8" font-size="13.5" font-weight="600" fill="#c3321f" text-anchor="end">방금 들어온 입력</text><rect x="219.4" y="109.4" width="72.9" height="23.5" rx="11.8" fill="#fbe3ef"></rect><text x="226.4" y="126.9" font-size="13.5" font-weight="600" fill="#b8327a" text-anchor="start">투영 간섭</text><text x="154" y="173.9" font-size="13.5" font-weight="700" fill="#b8327a" text-anchor="start">0.47</text><text x="12" y="270" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="start">35도씩 돌고</text><text x="12" y="287" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="start">0.85배로 줄어든다</text></svg><p class="ill-sub"><b>(나)</b> 나이별 방향이 그리는 나선</p></div></div><figcaption>(가) 입력은 드문드문 들어오고, 정답은 입력을 3스텝 늦춘 수열이다. 들어온 입력은 스텝마다 나이가 하나씩 늘며 은닉 상태에 머물다가, 나이가 3이 되는 순간 출력으로 나가야 한다. 시점 <i>t</i>의 은닉 상태에는 지나간 입력이 저마다 나이에 맞는 방향으로 더해져 있다(<i>h<sub>t</sub></i> = Σ<sub><i>s</i></sub> <i>w<sub>s</sub>x</i><sub><i>t</i>−<i>s</i></sub>). 이 수열에서는 입력이 들어온 두 항만 남는다. (나) 순환 행렬이 한 스텝마다 35도 돌리고 0.85배로 줄이면(스펙트럼 반경 0.85), 한 입력의 방향은 나이를 먹을수록 나선을 그리며 원점으로 말려 들어간다(<i>w</i><sub>0</sub>부터 <i>w</i><sub>6</sub>까지 계산한 값). 출력 방향 <i>w<sub>y</sub></i>는 <i>w</i><sub>3</sub>에 맞추고, <i>w</i><sub>3</sub>이 1로 읽히게 크기를 정했다. 그래도 한 스텝 전에 들어온 입력의 방향 <i>w</i><sub>1</sub>은 0.47로 읽힌다(분홍 점선). 그래서 (가)의 시점 <i>t</i>에서 출력은 <i>x</i><sub><i>t</i>−3</sub>에 0.47<i>x</i><sub><i>t</i>−1</sub>이 섞인 값이 된다. 이것이 투영 간섭이다. 이웃한 나이일수록 방향이 비슷해 더 많이 섞이고, <i>w</i><sub>2</sub>는 0.96로 읽힌다. 2차원으로 단순화한 개념도다.</figcaption></figure>
+</section>
+<section id="수식-손실을-네-항으로-나누면" class="level3">
+<h3 class="anchored" data-anchor-id="수식-손실을-네-항으로-나누면">수식: 손실을 네 항으로 나누면</h3>
+<p>입력이 확률 <img src="https://latex.codecogs.com/png.latex?p">로 드물게 켜지고 시점끼리 독립이라고 가정하면, 선형 RNN의 기대 손실은 네 항으로 정리된다(식 5, 부록 B). <img src="https://latex.codecogs.com/png.latex?%5Cmu">와 <img src="https://latex.codecogs.com/png.latex?%5Cnu">는 켜진 입력 값의 평균과 제곱 평균이다.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BE%7D%5BL%5D=%5Csum_%7Bt=k+1%7D%5E%7BT%7D%5CBig(%5Cunderbrace%7Bp%5Cnu%5C,(w_y%5E%5Ctop%20w_%7Bk%7D-1)%5E2%7D_%7B%5Ctext%7Btask%7D%7D%5Cunderbrace%7B-%5C,2p%5E2%5Cmu%5E2%5Csum_%7Bs%5Cneq%20k%7Dw_y%5E%5Ctop%20w_s%7D_%7B%5Ctext%7Bmean%7D%7D%5CBig)+%5Csum_%7Bt=1%7D%5E%7BT%7D%5CBig(%5Cunderbrace%7Bp%5Cnu%5Csum_%7Bs%5Cneq%20k%7D(w_y%5E%5Ctop%20w_s)%5E2%7D_%7B%5Ctext%7Bprojection%7D%7D+%5Cunderbrace%7Bp%5E2%5Cmu%5E2%5Csum_%7Bs%5Cneq%20s'%7D(w_y%5E%5Ctop%20w_s)(w_y%5E%5Ctop%20w_%7Bs'%7D)%7D_%7B%5Ctext%7Bcomposition%7D%7D%5CBig)%0A"></p>
+<p>첫 항(과제 이득)은 <img src="https://latex.codecogs.com/png.latex?k">스텝 된 입력의 방향 <img src="https://latex.codecogs.com/png.latex?w_k">를 출력 방향에 맞출수록 줄어든다. 둘째 항(평균 보정)은 입력 평균이 0이 아닐 때 다른 방향의 투영을 편향처럼 쓰는 효과인데, 출력에 편향을 두면 사라진다. 셋째 항(투영 간섭 비용)은 제때가 아닌 방향이 출력에 걸리는 만큼 벌을 준다. 넷째 항(조합 간섭)은 투영이 같은 부호끼리 겹치면 벌을, 반대 부호끼리 상쇄하면 이득을 준다. 그래서 방향들은 가능한 한 서로 멀리, 이상적으로는 정반대 쌍을 이루도록 퍼지려 한다.</p>
+<p>선형 RNN이 실제로 찾는 답은 나선 수렴(spiral sink)이다(위 개념도의 (나)). 매 스텝 특징을 조금씩 돌리면서 크기를 줄여, 오래된 입력이 원점으로 말려 들어가며 사라진다(4.1절). 부록 D는 손실이 유한하려면 스펙트럼 반경이 1보다 작아야 함을 증명하고, 나선이 최적이라는 것은 2차원에서 실험으로 확인한다. 논문은 이를 부드러운 망각이라 부른다.</p>
+<p>출력에 ReLU를 붙이면 사정이 달라진다(식 6). 출력 방향과 반대쪽을 향한 벡터는 ReLU를 지나면 0이 되므로, 출력 방향 반대편 절반은 아무것도 잘못 읽히지 않는 간섭 없는 공간(interference-free space)이 된다. 입력이 충분히 드물어 조합 간섭을 무시할 수 있다면, 아직 꺼낼 때가 되지 않은 방향들을 모두 이 반쪽에 몰아 두는 것이 최선이다(그림 3a).</p>
+</section>
+</section>
+<section id="결과-해설" class="level2">
+<h2 class="anchored" data-anchor-id="결과-해설">결과 해설</h2>
+<p><strong>학습은 두 단계로 진행된다(그림 2).</strong> 2차원 선형 RNN을 3-지연 과제로 학습시키면, 처음에는 모든 나이의 방향이 출력 방향 쪽으로 한꺼번에 정렬된다. 그다음 방향들이 나이 순서대로 벌어지면서 과제 오차, 평균 보정, 조합 간섭 항은 줄고 투영 간섭 항은 커진다. 손실 곡선이 계단 모양으로 떨어지는데, 저자들은 이를 특이값을 하나씩 배우며 안장점 사이를 옮겨 가는 학습(saddle-to-saddle dynamics)의 흔적으로 본다. 식 5로 계산한 기대 손실은 실제 손실 곡선과 잘 겹친다.</p>
+<p><strong>입력이 드물어지면 모양이 급변한다(4.3절, 그림 4).</strong> 순환은 선형이고 출력에만 ReLU가 있는 상태공간모델(SSM)을 보자. 입력이 자주 켜지는 조밀 국면에서는 선형 RNN처럼 나선으로 수렴하고, 과제에 필요한 방향들이 약 90도 안에 모인다. 입력이 드문 희소 국면에서는 방향들이 약 270도에 걸쳐 퍼지며 간섭 없는 공간을 가로질러 출력 방향에 닿는다. 희소도를 바꾸면 이 각도가 급격히 뛰는 상전이가 나타나고, 스펙트럼 반경은 함께 줄어든다. 조밀 국면에서 간섭 없는 공간을 쓰지 않는 이유를 저자들은 조합 간섭 때문으로 추정한다. 반대편에 숨겨 둔 큰 방향과 출력 쪽의 작은 방향이 동시에 켜지면, 둘이 상쇄되어 출력이 0으로 잘려 버릴 수 있어서다.</p>
+<p><strong>비선형 RNN은 간섭 없는 공간을 제대로 쓴다(4.4절, 그림 3d).</strong> 순환에도 ReLU를 넣으면, 아직 꺼낼 때가 되지 않은 방향들을 모두 간섭 없는 공간에 몰아넣고 꺼낼 차례인 방향만 바깥에 둔다. ReLU가 음수를 0으로 만들기 때문에 방향들은 은닉 상태의 양수 사분면 하나에 모이는 경우가 많다. 더 흥미로운 차이는 망각 방식이다. 선형 순환은 크기를 조금씩 줄여 잊는 수밖에 없지만, 비선형 RNN은 쓸모없어진 특징을 음수 사분면으로 보내 한 번에 지운다. 논문은 이를 날카로운 망각이라 부른다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figs/2026-09-30-rnn-temporal-superposition-fig3.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="논문 그림 3. 이론이 예측한 모양과 실제로 학습된 모양. 회색 면은 간섭 없는 공간, 별은 지금 꺼낼 입력의 방향(나이 k)이고, 색은 입력의 나이다(빨강에서 보라로 갈수록 오래된 입력). (a) 이론이 그리는 이상형. 아직 꺼낼 때가 되지 않은 방향은 모두 간섭 없는 공간에 모이고, 지금 꺼낼 방향만 그 밖에 놓인다. (b) 선형 RNN에는 간섭 없는 공간이 없어서, 오래된 방향을 나선으로 말아 원점으로 보낸다. (c) 희소 국면의 SSM은 크기가 큰 방향들을 간섭 없는 공간에 몰아 투영 간섭을 줄인다. (d) 비선형 RNN은 아직 꺼낼 때가 되지 않은 방향을 모두 간섭 없는 공간에 모아 출력 방향과 떼어 두고, 쓸모없어진 특징은 한 번에 지운다. 출처: Sharma, Proca, Prieto, Mediano (2026), CC BY 4.0."><img src="https://priors.kr/posts/figs/2026-09-30-rnn-temporal-superposition-fig3.webp" class="img-fluid figure-img" alt="논문 그림 3. 이론이 예측한 모양과 실제로 학습된 모양. 회색 면은 간섭 없는 공간, 별은 지금 꺼낼 입력의 방향(나이 k)이고, 색은 입력의 나이다(빨강에서 보라로 갈수록 오래된 입력). (a) 이론이 그리는 이상형. 아직 꺼낼 때가 되지 않은 방향은 모두 간섭 없는 공간에 모이고, 지금 꺼낼 방향만 그 밖에 놓인다. (b) 선형 RNN에는 간섭 없는 공간이 없어서, 오래된 방향을 나선으로 말아 원점으로 보낸다. (c) 희소 국면의 SSM은 크기가 큰 방향들을 간섭 없는 공간에 몰아 투영 간섭을 줄인다. (d) 비선형 RNN은 아직 꺼낼 때가 되지 않은 방향을 모두 간섭 없는 공간에 모아 출력 방향과 떼어 두고, 쓸모없어진 특징은 한 번에 지운다. 출처: Sharma, Proca, Prieto, Mediano (2026), CC BY 4.0."></a></p>
+<figcaption>논문 그림 3. 이론이 예측한 모양과 실제로 학습된 모양. 회색 면은 간섭 없는 공간, 별은 지금 꺼낼 입력의 방향(나이 k)이고, 색은 입력의 나이다(빨강에서 보라로 갈수록 오래된 입력). (a) 이론이 그리는 이상형. 아직 꺼낼 때가 되지 않은 방향은 모두 간섭 없는 공간에 모이고, 지금 꺼낼 방향만 그 밖에 놓인다. (b) 선형 RNN에는 간섭 없는 공간이 없어서, 오래된 방향을 나선으로 말아 원점으로 보낸다. (c) 희소 국면의 SSM은 크기가 큰 방향들을 간섭 없는 공간에 몰아 투영 간섭을 줄인다. (d) 비선형 RNN은 아직 꺼낼 때가 되지 않은 방향을 모두 간섭 없는 공간에 모아 출력 방향과 떼어 두고, 쓸모없어진 특징은 한 번에 지운다. 출처: Sharma, Proca, Prieto, Mediano (2026), CC BY 4.0.</figcaption>
+</figure>
+</div>
+<p><strong>특징 수와 기억 길이는 서로를 밀어낸다(4.5절, 그림 5).</strong> 중요도가 다른 특징 5개(A가 가장 중요)를 은닉 차원 2에 담게 하면, <img src="https://latex.codecogs.com/png.latex?k=0">에서는 다섯 개가 오각형으로 모두 담긴다. <img src="https://latex.codecogs.com/png.latex?k=1">이 되면 A, B, C만 두 스텝 동안 담고 D와 E는 버린다. <img src="https://latex.codecogs.com/png.latex?k">가 더 커지면 A 하나만 남는다. 어떤 특징이 손실을 줄이려면 <img src="https://latex.codecogs.com/png.latex?k+1">스텝 내내 붙들려 있어야 하므로, 그럴 여력이 없는 특징은 아예 담지 않는다. 저자들은 이를 전부 아니면 전무(all-or-none) 전략이라 부른다. 은닉 차원 100, 특징 75개로 키운 2-지연 과제 실험에서도 성능이 좋은 모델은 꺼낼 차례가 아닌 큰 방향들을 간섭 없는 공간에 두고, 제때 꺼낼 방향만 출력에 맞췄다(그림 13, 부록 G).</p>
+</section>
+<section id="의심해볼-점" class="level2">
+<h2 class="anchored" data-anchor-id="의심해볼-점">의심해볼 점</h2>
+<ul>
+<li><strong>과제가 하나다.</strong> 핵심 결과는 모두 k-지연 과제, 곧 입력을 정해진 스텝 뒤에 그대로 되돌려 주는 과제에서 나왔다. 기억할 시간이 매번 달라지거나 기억한 정보를 가공해야 하는 과제에서는 전략이 달라질 가능성이 크다. 저자들이 더한 무작위 지연 실험(부록 H)에서는 방향들이 나선 대신 원점으로 줄어드는 직선 위에 놓이고, 주된 방향이 2~3개로 뭉치는 경우가 많았다. 저자들도 예비 결과라고 선을 긋는다.</li>
+<li><strong>그림은 가장 잘 된 모델이다.</strong> 은닉 차원 2는 경사하강법으로 최적화하기 어렵다. 조건별로 모델 1,000개를 학습시켰을 때 예측한 모양에 도달한 비율은 선형 RNN 11.4~30.8%, SSM 20.6~53.5%, 비선형 RNN 8.2~31.4%였다(부록 I.1, 표 1). Elhage 외(2022)도 같은 이유로 여러 번 학습해 가장 좋은 해를 골랐다.</li>
+<li><strong>정확한 이론은 선형 순환까지다.</strong> ReLU가 들어간 모델의 결과는 희소도가 매우 높은 극한의 근사식과 시뮬레이션에 기댄다. 입력이 시점끼리 독립이고 드물다는 가정도 과제에 따라서는 강할 수 있다고 저자들이 직접 적었다(6절).</li>
+<li><strong>선형 표현 가설을 전제한다.</strong> 특징이 활성 공간의 방향으로 표현된다는 가정이 무너지면 이 틀도 그대로 쓰기 어렵다.</li>
+</ul>
+<section id="리뷰어들이-짚은-점" class="level3">
+<h3 class="anchored" data-anchor-id="리뷰어들이-짚은-점">리뷰어들이 짚은 점</h3>
+<p>ICLR 2026 심사 기록은 OpenReview에 공개돼 있다. 리뷰어 세 명이 8점, 한 명이 6점을 줬고 구두 발표로 채택됐다.</p>
+<ul>
+<li><strong>고정 지연 과제의 한계.</strong> 한 리뷰어는 여기서 보인 회전하는 동역학이 신경과학에서 이미 알려진 결과와 맞닿아 있다고 짚었다. 고정 지연으로 학습한 RNN은 제때 출력 자리에 닿도록 회전하지만, 무작위 지연으로 학습하면 안정된 고정점에 정보를 붙든다는 지적이다. 그렇다면 시간 중첩은 고정 지연 과제가 만든 현상일 수도 있다. 저자들은 무작위 지연 실험(부록 H)을 더해 답했다.</li>
+<li><strong>모델 크기와 보고의 엄밀성.</strong> 다른 리뷰어는 2차원 RNN만으로는 일반화된 교훈을 얻기 어렵고, 모델 가운데 몇 개가 예측한 모양에 실제로 도달했는지 밝혀야 한다고 했다. 표 1과 은닉 차원 100 실험이 이 지적에 대한 답이다. 같은 리뷰어는 저차원 순환망(low-rank RNN) 연구가 이미 학습된 흐름 지도까지 정확히 그려 낸다며, 그 흐름과의 관계를 분명히 하라고 요구했다.</li>
+<li><strong>실용적 의미.</strong> 시간 중첩이 학습이나 평가에 무엇을 바꾸느냐는 질문에, 저자들은 데이터의 희소도로 RNN이 택할 전략과 필요한 모델 크기를 예측하고, 특징을 헷갈리거나 엉뚱한 시점에 내보내는 오류를 두 간섭으로 설명할 수 있다고 답했다.</li>
+<li><strong>동물 데이터와 층.</strong> 동물 데이터에서 시간 중첩을 본 적이 있느냐는 질문에 저자들은 조심스럽게 답했다. 원숭이 전전두엽에서 순서 항목들이 서로 다른 신경 부분공간에 담긴다는 결과(Xie 외, 2022)는 닮았지만, 그 부분공간들은 거의 직교해 중첩과는 다르다는 설명이다. 피드포워드 신경망의 층을 시간처럼 볼 수 있느냐는 질문에는 비슷한 현상이 생길 수 있지만, 시점마다 입력과 출력이 따로 있다는 점이 핵심 차이라고 답했다.</li>
+</ul>
+</section>
+</section>
+<section id="계보" class="level2">
+<h2 class="anchored" data-anchor-id="계보">계보</h2>
+<ul>
+<li><strong>Elhage 외(2022), Toy Models of Superposition.</strong> 출발점이다. 이 논문에서 <img src="https://latex.codecogs.com/png.latex?k=0">인 경우가 곧 이 피드포워드 장난감 모델이다.</li>
+<li><strong>중첩의 상전이.</strong> Chen 외(2023)는 같은 장난감 모델에서 은닉 차원이 2일 때 정다각형 해들이 임계점이 되고, 학습이 이 점들 사이를 옮겨 가며 진행된다는 것을 보였다. 이번 논문의 조밀 국면과 희소 국면 사이 상전이는 같은 그림을 시간 축에서 본 사례로 읽을 수 있다(블로그의 해석).</li>
+<li><strong>선형 RNN의 기억.</strong> Jaeger(2002)의 에코 상태 네트워크 기억 용량 연구가 k-지연 과제의 원형이다. François, Orvieto, Bach(2025)는 차원이 <img src="https://latex.codecogs.com/png.latex?S">인 선형 RNN이 그보다 먼 <img src="https://latex.codecogs.com/png.latex?K">스텝 전 입력을 흉내 낼 때, 최적 필터가 <img src="https://latex.codecogs.com/png.latex?K">스텝 근처를 <img src="https://latex.codecogs.com/png.latex?K/S">에 비례하는 폭으로 뭉개 평균낼 수밖에 없음을 보였다. 이번 논문은 그 조밀 국면에 더해 희소 국면과 비선형 RNN까지 다룬다.</li>
+<li><strong>학습 동역학.</strong> 같은 그룹의 Proca 외(2025)는 선형 RNN의 학습 동역학을, Haputhanthri 외(2024)는 단기 기억 과제에서 RNN이 어느 순간 갑자기 배우는 분기 현상을 다뤘다.</li>
+<li><strong>신경과학.</strong> 고정 지연에서의 회전 동역학과 무작위 지연에서의 고정점(Orhan과 Ma, 2019), 원숭이 전전두엽의 순서 기억 기하(Xie 외, 2022), 운동을 준비하는 활동이 출력에는 영향을 주지 않는 부분공간(Schimel 외, 2024)이 가까운 연구다. 작업 기억 이론의 두 갈래인 슬롯 모델과 자원 모델에 대해, 저자들은 이 설정에서 둘이 함께 나타난다고 본다(5절).</li>
+<li><strong>후속.</strong> 공저자 Prieto와 Mediano가 참여한 후속 연구(Prieto 외, 2026)는 특징들이 서로 상관될 때 이상화된 중첩 설명이 어떻게 달라지는지를 다룬다.</li>
+</ul>
+</section>
+<section id="열린-질문" class="level2">
+<h2 class="anchored" data-anchor-id="열린-질문">열린 질문</h2>
+<ol type="1">
+<li>기억할 시점이 매번 다르거나 기억한 정보를 가공해야 하는 과제에서, 시간 중첩은 어떤 기하로 바뀌는가.</li>
+<li>수백 차원 이상의 현대 순환 모델에서도 간섭 없는 공간과 나이별 방향을 직접 재고 풀어낼 수 있는가.</li>
+<li>뇌에서 기억해야 할 항목이 용량을 넘어서면, 항목별 신경 부분공간이 서로 겹치기 시작하는가.</li>
+</ol>
+</section>
+<section id="이해-확인" class="level2">
+<h2 class="anchored" data-anchor-id="이해-확인">이해 확인</h2>
+<div class="quiz-q" data-answer="2">
+<p><strong>1. 투영 간섭과 조합 간섭을 바르게 설명한 것은?</strong></p>
+<ol type="1">
+<li>투영 간섭은 두 입력이 동시에 켜질 때, 조합 간섭은 다른 나이의 방향이 출력에 걸릴 때 생긴다</li>
+<li>투영 간섭은 꺼낼 때가 아닌 나이의 방향이 출력 방향에 비스듬히 걸려 엉뚱한 시점이 읽히는 오류이고, 조합 간섭은 동시에 켜진 방향들의 합이 다른 방향을 흉내 내는 오류다</li>
+<li>둘 다 은닉 차원이 특징 수보다 클 때만 생긴다</li>
+<li>투영 간섭은 ReLU 출력에서만, 조합 간섭은 선형 출력에서만 생긴다</li>
+</ol>
+<div class="quiz-why">
+<p>투영 간섭은 w_s(s ≠ k)가 출력 방향 w_y와 직교하지 않아 생기고, 조합 간섭은 w_A + w_B 같은 합이 제3의 방향과 비슷해져 생긴다. 출력에 ReLU가 붙으면 w_y 반대편 절반에 둔 방향은 출력을 만들지 않아 투영 간섭이 줄어든다.</p>
+</div>
+</div>
+<div class="quiz-q" data-answer="2">
+<p><strong>2. 선형 순환 RNN은 오래된 입력을 어떻게 지우나?</strong></p>
+<ol type="1">
+<li>쓸모없어진 특징을 음수 사분면으로 보내 한 번에 지운다</li>
+<li>같은 행렬을 거듭 곱하며 돌리고 줄여서, 나선을 그리며 원점으로 서서히 사라지게 한다</li>
+<li>은닉 상태를 주기적으로 0으로 되돌린다</li>
+<li>출력 방향과 같은 방향에 모아 둔다</li>
+</ol>
+<div class="quiz-why">
+<p>선형 순환에서는 w_s = W_h^s W_x라서 입력이 나이 들수록 같은 행렬이 곱해질 뿐이다. 지우는 방법은 크기를 조금씩 줄이는 것뿐이고, 긴 수열에서도 손실이 유한하려면 스펙트럼 반경이 1보다 작아야 한다. 음수 사분면으로 보내 한 번에 지우는 날카로운 망각은 순환에 ReLU가 있는 RNN만 할 수 있다.</p>
+</div>
+</div>
+<div class="quiz-q" data-answer="2">
+<p><strong>3. 은닉 차원 2에 중요도가 다른 특징 5개를 담게 하고 기억 길이 k를 늘리면 가장 중요한 A 하나만 남는다. 까닭은?</strong></p>
+<ol type="1">
+<li>특징 A가 입력으로 가장 자주 들어오기 때문이다</li>
+<li>한 특징이 손실을 줄이려면 k + 1스텝 내내 붙들려 있어야 해서, 여력이 모자라면 가장 중요한 특징 하나에 몰아주는 편이 낫기 때문이다</li>
+<li>k가 커지면 조합 간섭이 사라지기 때문이다</li>
+<li>스펙트럼 반경이 1을 넘어서기 때문이다</li>
+</ol>
+<div class="quiz-why">
+<p>k-지연 과제에서 한 특징은 들어온 순간부터 k스텝 뒤 출력될 때까지 k + 1개의 나이별 방향이 모두 유지되어야 쓸모가 있다. 중간에 하나라도 잃으면 이득이 거의 없어서, 은닉 차원이 모자라면 여러 특징을 조금씩 담기보다 A 하나를 끝까지 담는다.</p>
+</div>
+</div>
+</section>
+<section id="논문-정보" class="level2">
+<h2 class="anchored" data-anchor-id="논문-정보">논문 정보</h2>
+<ul>
+<li>제목: Temporal superposition and feature geometry of RNNs under memory demands</li>
+<li>저자: Pratyaksh Sharma, Alexandra M. Proca, Lucas Prieto, Pedro A. M. Mediano (Imperial College London. Mediano는 University College London 겸임)</li>
+<li>학회: ICLR 2026 Oral</li>
+<li>링크: <a href="https://openreview.net/forum?id=7cMzTpbJHC">OpenReview</a>, <a href="https://proceedings.iclr.cc/paper_files/paper/2026/file/bfcb583d225b1db8d3ca2331f6785774-Paper-Conference.pdf">ICLR 논문집 PDF</a>, <a href="https://github.com/kashparty/iclr-rnn-superposition">코드</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>ML 논문</category>
+  <category>딥러닝의 과학</category>
+  <category>계산 신경과학</category>
+  <guid>https://priors.kr/posts/2026-09-30-rnn-temporal-superposition</guid>
+  <pubDate>Tue, 29 Sep 2026 15:00:00 GMT</pubDate>
+  <media:content url="https://priors.kr/posts/figs/2026-09-30-rnn-temporal-superposition-share.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>소프트맥스 트랜스포머도 튜링 완전하다, 튜링 기계 대신 카운터 기계로</title>
+  <link>https://priors.kr/posts/2026-09-30-short-softmax-transformers-turing-complete</link>
+  <description><![CDATA[ 
+
+<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+
+
+
+<section id="한-줄-요약" class="level2">
+<h2 class="anchored" data-anchor-id="한-줄-요약">한 줄 요약</h2>
+<p>생각의 사슬(chain of thought, CoT)을 쓰는 트랜스포머가 튜링 완전하다는 기존 증명은 모두 하드 어텐션(hard attention)에 기댔다. 이 논문은 실제로 쓰는 소프트맥스 어텐션으로도 튜링 완전함을 증명한다. 증명에 쓴 구성은 짧은 입력으로 배워 긴 입력에서도 맞히는 길이 일반화까지 보장받는다.</p>
+</section>
+<section id="무엇이-달라졌나" class="level2">
+<h2 class="anchored" data-anchor-id="무엇이-달라졌나">무엇이 달라졌나</h2>
+<p>지금까지의 증명은 튜링 기계를 그대로 흉내 냈다. 테이프 머리가 어디 있는지를 어텐션으로 정확히 집어내야 했는데, 이 일은 점수가 가장 높은 위치에만 가중치를 몰아주는 하드 어텐션이라야 쉬웠다. 소프트맥스로도 되는지는 열린 문제였다(1절).</p>
+<p>논문의 답은 세 층으로 나온다. 입력 기호가 한 종류뿐이거나 <img src="https://latex.codecogs.com/png.latex?a_1%5E*%5Ccdots%20a_n%5E*"> 꼴로 기호가 차례로 몰려 있는 언어라면, 인과 마스킹만 있는 소프트맥스 CoT 트랜스포머로 재귀 열거 가능한 언어를 모두 알아본다(정리 3.1, 명제 3.3). 기호가 자유롭게 섞인 일반 언어에서는 그렇지 않다. 회문조차 알아보지 못한다(명제 4.1). 여기에 상대 위치 부호화(relative positional encoding, RPE)를 하나 더하면 임의의 언어에서 튜링 완전해진다(정리 4.3).</p>
+<figure class="ill figure"><div class="ill-panels"><div class="ill-panel"><svg viewbox="0 0 380 298" aria-label="입력 aaaa 뒤에 생각의 사슬 τ0 τ0 τ1이 붙는다. 카운터 x는 a의 개수에서 τ0 개수의 두 배를 뺀 값으로, 4, 2, 0으로 줄어 받아들인다"><rect x="82" y="13.5" width="216" height="23.5" rx="11.8" fill="#ece6fc"></rect><text x="89" y="31" font-size="13.5" font-weight="600" fill="#6245cc" text-anchor="start">x = (a의 개수) − 2 × (τ₀의 개수)</text><text x="112" y="66" font-size="13.5" font-weight="600" fill="#2459c2" text-anchor="middle">입력</text><text x="287" y="66" font-size="13.5" font-weight="600" fill="#6245cc" text-anchor="middle">생각의 사슬</text><rect x="16" y="78" width="42" height="40" rx="8" fill="#e3ecfd" stroke="#2f6fe4" stroke-width="1.6"></rect><text x="37" y="104" font-size="16" font-weight="700" fill="#2459c2" text-anchor="middle">a</text><rect x="66" y="78" width="42" height="40" rx="8" fill="#e3ecfd" stroke="#2f6fe4" stroke-width="1.6"></rect><text x="87" y="104" font-size="16" font-weight="700" fill="#2459c2" text-anchor="middle">a</text><rect x="116" y="78" width="42" height="40" rx="8" fill="#e3ecfd" stroke="#2f6fe4" stroke-width="1.6"></rect><text x="137" y="104" font-size="16" font-weight="700" fill="#2459c2" text-anchor="middle">a</text><rect x="166" y="78" width="42" height="40" rx="8" fill="#e3ecfd" stroke="#2f6fe4" stroke-width="1.6"></rect><text x="187" y="104" font-size="16" font-weight="700" fill="#2459c2" text-anchor="middle">a</text><rect x="216" y="78" width="42" height="40" rx="8" fill="#ece6fc" stroke="#7c5ce6" stroke-width="1.6"></rect><text x="237" y="104" font-size="16" font-weight="700" fill="#6245cc" text-anchor="middle">τ₀</text><rect x="266" y="78" width="42" height="40" rx="8" fill="#ece6fc" stroke="#7c5ce6" stroke-width="1.6"></rect><text x="287" y="104" font-size="16" font-weight="700" fill="#6245cc" text-anchor="middle">τ₀</text><rect x="316" y="78" width="42" height="40" rx="8" fill="#ddf1e5" stroke="#2f9e5a" stroke-width="1.6"></rect><text x="337" y="104" font-size="16" font-weight="700" fill="#25804a" text-anchor="middle">τ₁</text><line x1="212" y1="52" x2="212" y2="124" stroke="#8b93a3" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="3 4"></line><path d="M187,122 Q212,166 234,127.2" fill="none" stroke="#1f2533" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polygon points="237,122 236.8,130 230.2,126.3" fill="#1f2533"></polygon><text x="212" y="168" font-size="13.5" font-weight="700" fill="#6245cc" text-anchor="middle">x=4</text><path d="M237,122 Q262,166 284,127.2" fill="none" stroke="#1f2533" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polygon points="287,122 286.8,130 280.2,126.3" fill="#1f2533"></polygon><text x="262" y="168" font-size="13.5" font-weight="700" fill="#6245cc" text-anchor="middle">x=2</text><path d="M287,122 Q312,166 334,127.2" fill="none" stroke="#1f2533" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polygon points="337,122 336.8,130 330.2,126.3" fill="#1f2533"></polygon><text x="312" y="168" font-size="13.5" font-weight="700" fill="#25804a" text-anchor="middle">x=0</text><text x="16" y="214" font-size="13.5" font-weight="600" fill="#6245cc" text-anchor="start">x &gt; 0 이면 τ₀를 쓴다 (x에서 2를 뺀다)</text><text x="16" y="238" font-size="13.5" font-weight="600" fill="#25804a" text-anchor="start">x = 0 이면 τ₁을 쓰고 받아들인다</text><text x="16" y="268" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="start">카운터는 어디에도 적지 않고, 셀 때마다 새로 구한다</text></svg><p class="ill-sub"><b>(가)</b> 셈으로 흉내 내는 카운터 기계</p></div><div class="ill-panel"><svg viewbox="0 0 380 298" aria-label="입력 aba 뒤에 빈 토큰을 붙여 길이 21에서 멈춘다. 21을 이진수로 쓴 10101에서 첫 0 뒤의 101이 a의 자리 1과 3을 가리킨다"><rect x="16" y="120" width="34" height="38" rx="8" fill="#e3ecfd" stroke="#2f6fe4" stroke-width="1.6"></rect><text x="33" y="145" font-size="16" font-weight="700" fill="#2459c2" text-anchor="middle">a</text><text x="33" y="176" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="middle">1</text><rect x="56" y="120" width="34" height="38" rx="8" fill="#fdefd9" stroke="#f29a1f" stroke-width="1.6"></rect><text x="73" y="145" font-size="16" font-weight="700" fill="#a86400" text-anchor="middle">b</text><text x="73" y="176" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="middle">2</text><rect x="96" y="120" width="34" height="38" rx="8" fill="#e3ecfd" stroke="#2f6fe4" stroke-width="1.6"></rect><text x="113" y="145" font-size="16" font-weight="700" fill="#2459c2" text-anchor="middle">a</text><text x="113" y="176" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="middle">3</text><rect x="136" y="120" width="34" height="38" rx="8" fill="#ffffff" stroke="#c9cfdb" stroke-width="1.6"></rect><text x="153" y="145" font-size="16" font-weight="400" fill="#5a6272" text-anchor="middle">□</text><text x="153" y="176" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="middle">4</text><rect x="176" y="120" width="34" height="38" rx="8" fill="#ffffff" stroke="#c9cfdb" stroke-width="1.6"></rect><text x="193" y="145" font-size="16" font-weight="400" fill="#5a6272" text-anchor="middle">□</text><text x="193" y="176" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="middle">5</text><text x="232" y="144" font-size="16" font-weight="400" fill="#5a6272" text-anchor="middle">…</text><rect x="254" y="120" width="34" height="38" rx="8" fill="#ffffff" stroke="#c9cfdb" stroke-width="1.6"></rect><text x="271" y="145" font-size="16" font-weight="400" fill="#5a6272" text-anchor="middle">□</text><text x="271" y="176" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="middle">21</text><rect x="294" y="120" width="34" height="38" rx="8" fill="#ece6fc" stroke="#7c5ce6" stroke-width="1.6"></rect><text x="311" y="145" font-size="16" font-weight="700" fill="#6245cc" text-anchor="middle">끝</text><text x="311" y="176" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="middle">22</text><rect x="251" y="117" width="40" height="44" rx="10" fill="none" stroke="#1f2533" stroke-width="1.6"></rect><path d="M271,116 Q152,18 38.2,111.7" fill="none" stroke="#2f6fe4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><polygon points="33,116 36.4,107.7 41.8,114.2" fill="#2f6fe4"></polygon><path d="M271,116 Q192,52 118.2,111.8" fill="none" stroke="#2f6fe4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><polygon points="113,116 116.5,107.7 121.8,114.3" fill="#2f6fe4"></polygon><text x="279" y="30" font-size="13.5" font-weight="600" fill="#2459c2" text-anchor="end">위치 21이 보는 자리</text><rect x="20" y="199" width="26" height="26" rx="6" fill="#e3ecfd" stroke="#2f6fe4" stroke-width="1.4"></rect><text x="33" y="217" font-size="15" font-weight="700" fill="#2459c2" text-anchor="middle">1</text><rect x="60" y="199" width="26" height="26" rx="6" fill="#ffffff" stroke="#c9cfdb" stroke-width="1.4"></rect><text x="73" y="217" font-size="15" font-weight="700" fill="#5a6272" text-anchor="middle">0</text><rect x="100" y="199" width="26" height="26" rx="6" fill="#e3ecfd" stroke="#2f6fe4" stroke-width="1.4"></rect><text x="113" y="217" font-size="15" font-weight="700" fill="#2459c2" text-anchor="middle">1</text><text x="139" y="206" font-size="13.5" font-weight="600" fill="#1f2533" text-anchor="start">21 = 10101 (이진수)</text><text x="139" y="225" font-size="12.5" font-weight="400" fill="#5a6272" text-anchor="start">첫 0 뒤의 세 자리</text><text x="16" y="262" font-size="13.5" font-weight="400" fill="#1f2533" text-anchor="start">1이 선 자리가 a가 있는 자리 1, 3과 꼭 맞을 때</text><text x="16" y="284" font-size="13.5" font-weight="400" fill="#1f2533" text-anchor="start">표시를 찍는다. 이제 수 21이 a의 배치를 담는다</text></svg><p class="ill-sub"><b>(나)</b> 상대 위치로 순서를 수에 담기</p></div></div><figcaption>(가) a의 개수가 짝수인지 가리는 카운터 기계(논문 예제 1, 그림 1)를 입력 aaaa에서 돌린 모습. 매 단계 앞선 토큰을 세어 카운터 x를 다시 구하고, 그 값에 따라 다음 전이 토큰을 쓴다. (나) 4절 1단계를 입력 aba에 적용한 모습. 빈 토큰을 붙여 가다가 길이 ℓ을 이진수로 쓴 뒤 첫 0 다음 자리들이 a의 배치(101)와 같아지는 ℓ = 21에서 멈춘다. 상대 위치 부호화는 위치 ℓ이 그 1이 선 자리만 보게 해서 이 일치를 셈으로 확인하게 한다. b의 배치도 같은 방식으로 다른 수에 담는다. 논문의 구성을 작은 입력으로 옮긴 개념도다.</figcaption></figure>
+</section>
+<section id="어떻게-보였나" class="level2">
+<h2 class="anchored" data-anchor-id="어떻게-보였나">어떻게 보였나</h2>
+<p>튜링 기계 대신 민스키의 카운터 기계(counter machine)를 흉내 낸다. 카운터 기계는 정수 카운터 몇 개와 상태만 가진 기계로, 카운터가 0인지 아닌지 보고 더하거나 뺀다. 입력 기호별 개수를 담는 카운터 <img src="https://latex.codecogs.com/png.latex?n">개에 보조 카운터 3개만 더하면 튜링 기계가 하는 일을 다 한다(보조정리 3.5).</p>
+<p>증명은 C-RASP라는 작은 프로그래밍 언어를 거친다. C-RASP는 앞선 위치 가운데 조건을 만족하는 곳의 수를 세고 비교하는 연산만 있다. 선행 연구(Huang 외, 2025)는 C-RASP 프로그램을 소프트맥스 트랜스포머로 옮길 수 있고, 그렇게 옮긴 모델은 이상화한 학습 절차에서 길이 일반화가 된다는 것을 보였다. 논문은 이 결과를 CoT로 넓힌다(명제 2.1, 2.3).</p>
+<p>핵심은 카운터 값을 어디에도 저장하지 않는다는 데 있다. CoT의 토큰 하나하나가 카운터 기계의 전이 하나이고, 지금 카운터 값은 입력 기호의 개수에 지금까지 쓴 전이 토큰들의 효과를 더해 매번 새로 센다(식 3, 4). 그림 (가)처럼 a의 개수가 짝수인지 가리는 기계라면 a의 개수에서 <img src="https://latex.codecogs.com/png.latex?%5Ctau_0"> 개수의 두 배를 빼면 된다(예제 1). 세기는 소프트맥스 어텐션이 원래 잘하는 일이다.</p>
+<p>일반 언어에서는 세기만으로 순서를 알 수 없다. ab와 ba는 기호 개수가 같다. 그래서 1단계에서 빈 토큰을 붙여 가다가, 현재 길이 <img src="https://latex.codecogs.com/png.latex?%5Cell">을 이진수로 쓴 뒤 첫 0 다음 자리들이 한 기호의 배치와 꼭 맞을 때 표시 토큰을 찍는다. 이 확인을 위해 위치 <img src="https://latex.codecogs.com/png.latex?%5Cell">이 그 이진수에서 1이 선 자리만 보게 하는 RPE를 쓴다. 이렇게 입력 전체가 몇 개의 수로 바뀌면, 2단계에서 그 수를 초깃값으로 카운터 기계를 돌린다(4절). 이 RPE는 풀려는 언어와 상관없이 하나로 고정돼 있다.</p>
+</section>
+<section id="눈여겨볼-점" class="level2">
+<h2 class="anchored" data-anchor-id="눈여겨볼-점">눈여겨볼 점</h2>
+<p>첫째, 모델에 몇 가지 이론적 장치가 들어 있다. 어텐션 점수에 <img src="https://latex.codecogs.com/png.latex?%5Clog%20n">을 곱하고, 피드포워드 층에 헤비사이드(Heaviside) 활성 함수를 허용한다(2.1절). 저자들은 입력 길이가 정해지면 헤비사이드를 ReLU로 얼마든지 가깝게 근사할 수 있다고 쓴다. 증명에 쓴 RPE는 어텐션 점수에 상수를 더한다는 점에서 ALiBi나 T5식 편향과 같지만, 어느 위치에 더할지를 거리가 아니라 이진수 구조로 정한다(4절, 부록 A.3).</p>
+<p>둘째, 튜링 완전성은 무엇을 원리상 할 수 있는지를 말할 뿐 얼마나 빨리 하는지는 말하지 않는다. 이 구성에서 카운터 값 <img src="https://latex.codecogs.com/png.latex?N">을 만들려면 CoT 토큰이 적어도 <img src="https://latex.codecogs.com/png.latex?N">에 비례해 필요하고, 카운터 기계로 튜링 기계를 흉내 내면 걸음 수가 지수적으로 는다고 알려져 있다. 계산 복잡도와의 연결은 저자들도 다음 과제로 남겼다(6절).</p>
+<p>셋째, 실험은 카운터 기계의 전이 기록 전체를 정답 CoT로 주고 학습시켰다(부록 D). 길이 1에서 100까지로 학습하고 201에서 300까지로 시험했을 때, 이진 표현에 RPE를 쓴 모델은 다섯 과제 모두 100%였고 RPE를 뺀 모델은 0%였다(표 2). RPE를 뺀 쪽은 6층 모델로 더 컸다(표 3). 모델은 추론 과정을 스스로 찾아내지 않았다. 정해 준 과정을 긴 입력에서도 그대로 따라 했을 뿐이다. 리뷰 점수는 2점에서 10점까지 크게 갈렸고, 가장 낮은 점수를 준 리뷰어는 튜링 완전성이라는 말을 이 결과에 그대로 써도 되는지부터 물었다.</p>
+</section>
+<section id="열린-질문" class="level2">
+<h2 class="anchored" data-anchor-id="열린-질문">열린 질문</h2>
+<ol type="1">
+<li>실제 모델이 쓰는 RoPE나 학습된 위치 편향만으로도 같은 결론이 나올까. 그렇지 않다면 위치 부호화의 어떤 성질이 순서를 수로 바꾸는 데 필요한지 가를 수 있을까.</li>
+</ol>
+</section>
+<section id="이해-확인" class="level2">
+<h2 class="anchored" data-anchor-id="이해-확인">이해 확인</h2>
+<div class="quiz-q" data-answer="3">
+<p><strong>인과 마스킹만 있는 CoT C-RASP가 일반 언어에서 튜링 완전하지 않은 까닭으로 가장 알맞은 것은?</strong></p>
+<ol type="1">
+<li>소프트맥스 어텐션은 개수를 셀 수 없기 때문이다</li>
+<li>CoT가 유한한 길이에서 반드시 멈추기 때문이다</li>
+<li>세는 연산만으로는 기호의 순서를 충분히 구별하지 못해, 회문 같은 언어를 알아보지 못하기 때문이다</li>
+<li>카운터 기계는 튜링 기계보다 약하기 때문이다</li>
+</ol>
+<div class="quiz-why">
+<p>길이 n까지의 입력에서 이런 모델은 n의 다항식 크기 오토마톤으로 흉내 낼 수 있다(보조정리 4.2). 회문은 그보다 훨씬 많은 상태가 필요하므로 알아볼 수 없다. 카운터 기계는 보조 카운터 3개만 더하면 튜링 완전하고(보조정리 3.5), 모자란 것은 순서 정보다. 상대 위치 부호화가 이를 채운다.</p>
+</div>
+</div>
+</section>
+<section id="논문-정보" class="level2">
+<h2 class="anchored" data-anchor-id="논문-정보">논문 정보</h2>
+<ul>
+<li>제목: <a href="https://arxiv.org/abs/2511.20038">Softmax Transformers are Turing-Complete</a></li>
+<li>저자: Hongjian Jiang (RPTU Kaiserslautern-Landau), Michael Hahn (Saarland University), Georg Zetzsche (MPI-SWS), Anthony Widjaja Lin (RPTU Kaiserslautern-Landau, MPI-SWS)</li>
+<li>학회: ICLR 2026 구두 발표(Oral)</li>
+<li>링크: <a href="https://arxiv.org/abs/2511.20038">arXiv 2511.20038</a>, <a href="https://openreview.net/forum?id=FdkPOHlChS">OpenReview</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>짧은 읽기</category>
+  <category>딥러닝의 과학</category>
+  <category>트랜스포머 표현력</category>
+  <guid>https://priors.kr/posts/2026-09-30-short-softmax-transformers-turing-complete</guid>
+  <pubDate>Tue, 29 Sep 2026 15:00:00 GMT</pubDate>
+  <media:content url="https://priors.kr/posts/figs/2026-09-30-short-softmax-transformers-turing-complete-share.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>Muon의 직교화 다항식을 반복마다 새로 고르면</title>
   <link>https://priors.kr/posts/2026-09-29-short-polar-express-muon</link>
