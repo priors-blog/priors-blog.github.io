@@ -23,7 +23,9 @@
   <link>https://priors.kr/posts/2026-10-14-short-deep-jacobian-spectra</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -101,7 +103,9 @@
   <link>https://priors.kr/posts/2026-10-13-diffusion-memorization-dynamics</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -291,7 +295,9 @@
   <link>https://priors.kr/posts/2026-10-06-flow-matching-kinetic-energy</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -466,7 +472,9 @@
   <link>https://priors.kr/posts/2026-10-06-short-einx-tensor-notation</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -538,7 +546,9 @@
   <link>https://priors.kr/posts/2026-10-06-science-bridge-superdark-gpcr</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -678,7 +688,9 @@
   <link>https://priors.kr/posts/2026-10-05-short-relu-discrete-geometry</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -761,7 +773,9 @@
   <link>https://priors.kr/posts/2026-10-05-score-repellent-monte-carlo</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -937,7 +951,9 @@
   <link>https://priors.kr/posts/2026-10-02-falcon-flow-likelihoods</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -1104,7 +1120,9 @@
   <link>https://priors.kr/posts/2026-10-02-science-bridge-blazar-jet-video</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -1253,7 +1271,9 @@
   <link>https://priors.kr/posts/2026-10-02-short-conformal-robustness-control</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -1331,7 +1351,9 @@
   <link>https://priors.kr/posts/2026-10-01-short-locomotion-cognitive-maps</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -1407,7 +1429,9 @@
   <link>https://priors.kr/posts/2026-10-01-diffusion-spacetime-geometry</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -1622,7 +1646,9 @@
   <link>https://priors.kr/posts/2026-09-30-rnn-temporal-superposition</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -1793,7 +1819,9 @@
   <link>https://priors.kr/posts/2026-09-30-short-softmax-transformers-turing-complete</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -1865,7 +1893,9 @@
   <link>https://priors.kr/posts/2026-09-29-short-polar-express-muon</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -1936,7 +1966,9 @@
   <link>https://priors.kr/posts/2026-09-29-grokking-ridge-regression</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -2116,7 +2148,9 @@
   <link>https://priors.kr/posts/2026-09-29-science-bridge-psychedelics-context</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -2263,7 +2297,9 @@
   <link>https://priors.kr/posts/2026-09-28-high-accuracy-sampling</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -2458,7 +2494,9 @@
   <link>https://priors.kr/posts/2026-09-28-short-feature-learning-scaling-spectra</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
@@ -2528,7 +2566,9 @@
   <link>https://priors.kr/posts/2026-09-25-science-bridge-disorder-stability</link>
   <description><![CDATA[ 
 
-<!-- Quarto default title block plus the original paper under the subtitle (front matter paper.title, paper.link). -->
+<!-- Quarto default title block. A paper post leads with its venue and the original paper title (front matter paper.*),
+     then the Korean post title and subtitle (operator decision, 2026-10-14: readers recognise the paper first).
+     The Korean title stays the page's h1, so search engines and the browser tab keep using it. -->
 
 
 
