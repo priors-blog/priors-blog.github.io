@@ -92,7 +92,6 @@
  ]]></description>
   <category>짧은 읽기</category>
   <category>딥러닝의 과학</category>
-  <category>학습 동역학</category>
   <guid>https://priors.kr/posts/2026-10-14-short-deep-jacobian-spectra</guid>
   <pubDate>Tue, 13 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-14-short-deep-jacobian-spectra-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -281,9 +280,8 @@
 </section>
 
  ]]></description>
-  <category>ML 논문</category>
+  <category>깊이 읽기</category>
   <category>생성 모델</category>
-  <category>딥러닝의 과학</category>
   <guid>https://priors.kr/posts/2026-10-13-diffusion-memorization-dynamics</guid>
   <pubDate>Mon, 12 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-13-diffusion-memorization-dynamics-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -457,9 +455,8 @@
 </section>
 
  ]]></description>
-  <category>ML 논문</category>
+  <category>깊이 읽기</category>
   <category>생성 모델</category>
-  <category>플로우 매칭</category>
   <guid>https://priors.kr/posts/2026-10-06-flow-matching-kinetic-energy</guid>
   <pubDate>Mon, 05 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-06-flow-matching-kinetic-energy-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -531,8 +528,7 @@
 
  ]]></description>
   <category>짧은 읽기</category>
-  <category>효율, 시스템</category>
-  <category>텐서 프로그래밍</category>
+  <category>효율과 시스템</category>
   <guid>https://priors.kr/posts/2026-10-06-short-einx-tensor-notation</guid>
   <pubDate>Mon, 05 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-06-short-einx-tensor-notation-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -672,7 +668,7 @@
 
  ]]></description>
   <category>사이언스 브릿지</category>
-  <category>세포생물학</category>
+  <category>생명과학</category>
   <guid>https://priors.kr/posts/2026-10-06-science-bridge-superdark-gpcr</guid>
   <pubDate>Mon, 05 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-06-science-bridge-superdark-gpcr-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -755,8 +751,7 @@
 
  ]]></description>
   <category>짧은 읽기</category>
-  <category>이론, 최적화</category>
-  <category>ReLU 신경망 근사, 손실 지형</category>
+  <category>이론과 최적화</category>
   <guid>https://priors.kr/posts/2026-10-05-short-relu-discrete-geometry</guid>
   <pubDate>Sun, 04 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-05-short-relu-discrete-geometry-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -931,9 +926,8 @@
 </section>
 
  ]]></description>
-  <category>ML 논문</category>
-  <category>확률, 불확실성, 인과</category>
-  <category>MCMC와 신경 샘플러</category>
+  <category>깊이 읽기</category>
+  <category>확률과 인과</category>
   <guid>https://priors.kr/posts/2026-10-05-score-repellent-monte-carlo</guid>
   <pubDate>Sun, 04 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-05-score-repellent-monte-carlo-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1099,9 +1093,8 @@
 </section>
 
  ]]></description>
-  <category>ML 논문</category>
+  <category>깊이 읽기</category>
   <category>생성 모델</category>
-  <category>볼츠만 생성기</category>
   <guid>https://priors.kr/posts/2026-10-02-falcon-flow-likelihoods</guid>
   <pubDate>Thu, 01 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-02-falcon-flow-likelihoods-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1250,7 +1243,7 @@
 
  ]]></description>
   <category>사이언스 브릿지</category>
-  <category>천체물리</category>
+  <category>물리과학</category>
   <guid>https://priors.kr/posts/2026-10-02-science-bridge-blazar-jet-video</guid>
   <pubDate>Thu, 01 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-02-science-bridge-blazar-jet-video-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1328,8 +1321,7 @@
 
  ]]></description>
   <category>짧은 읽기</category>
-  <category>확률, 불확실성, 인과</category>
-  <category>컨포멀 예측</category>
+  <category>확률과 인과</category>
   <guid>https://priors.kr/posts/2026-10-02-short-conformal-robustness-control</guid>
   <pubDate>Thu, 01 Oct 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-02-short-conformal-robustness-control-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1406,7 +1398,6 @@
  ]]></description>
   <category>짧은 읽기</category>
   <category>딥러닝의 과학</category>
-  <category>계산 신경과학</category>
   <guid>https://priors.kr/posts/2026-10-01-short-locomotion-cognitive-maps</guid>
   <pubDate>Wed, 30 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-01-short-locomotion-cognitive-maps-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1620,9 +1611,8 @@
 </section>
 
  ]]></description>
-  <category>ML 논문</category>
+  <category>깊이 읽기</category>
   <category>생성 모델</category>
-  <category>확산 모델 기하</category>
   <guid>https://priors.kr/posts/2026-10-01-diffusion-spacetime-geometry</guid>
   <pubDate>Wed, 30 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-10-01-diffusion-spacetime-geometry-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1792,9 +1782,8 @@
 </section>
 
  ]]></description>
-  <category>ML 논문</category>
+  <category>깊이 읽기</category>
   <category>딥러닝의 과학</category>
-  <category>계산 신경과학</category>
   <guid>https://priors.kr/posts/2026-09-30-rnn-temporal-superposition</guid>
   <pubDate>Tue, 29 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-30-rnn-temporal-superposition-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1867,7 +1856,6 @@
  ]]></description>
   <category>짧은 읽기</category>
   <category>딥러닝의 과학</category>
-  <category>트랜스포머 표현력</category>
   <guid>https://priors.kr/posts/2026-09-30-short-softmax-transformers-turing-complete</guid>
   <pubDate>Tue, 29 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-30-short-softmax-transformers-turing-complete-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -1938,8 +1926,7 @@
 
  ]]></description>
   <category>짧은 읽기</category>
-  <category>이론, 최적화</category>
-  <category>딥러닝 옵티마이저</category>
+  <category>이론과 최적화</category>
   <guid>https://priors.kr/posts/2026-09-29-short-polar-express-muon</guid>
   <pubDate>Mon, 28 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-29-short-polar-express-muon-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -2118,9 +2105,8 @@
 </section>
 
  ]]></description>
-  <category>ML 논문</category>
+  <category>깊이 읽기</category>
   <category>딥러닝의 과학</category>
-  <category>학습 이론</category>
   <guid>https://priors.kr/posts/2026-09-29-grokking-ridge-regression</guid>
   <pubDate>Mon, 28 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-29-grokking-ridge-regression-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -2267,7 +2253,7 @@
 
  ]]></description>
   <category>사이언스 브릿지</category>
-  <category>신경과학</category>
+  <category>생명과학</category>
   <guid>https://priors.kr/posts/2026-09-29-science-bridge-psychedelics-context</guid>
   <pubDate>Mon, 28 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-29-science-bridge-psychedelics-context-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -2461,9 +2447,8 @@
 </section>
 
  ]]></description>
-  <category>ML 논문</category>
+  <category>깊이 읽기</category>
   <category>생성 모델</category>
-  <category>샘플링 이론</category>
   <guid>https://priors.kr/posts/2026-09-28-high-accuracy-sampling</guid>
   <pubDate>Sun, 27 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-28-high-accuracy-sampling-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -2534,7 +2519,6 @@
  ]]></description>
   <category>짧은 읽기</category>
   <category>딥러닝의 과학</category>
-  <category>학습 이론</category>
   <guid>https://priors.kr/posts/2026-09-28-short-feature-learning-scaling-spectra</guid>
   <pubDate>Sun, 27 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-28-short-feature-learning-scaling-spectra-share.png" medium="image" type="image/png" height="76" width="144"/>
@@ -2673,7 +2657,7 @@
 
  ]]></description>
   <category>사이언스 브릿지</category>
-  <category>복잡계 물리</category>
+  <category>물리과학</category>
   <guid>https://priors.kr/posts/2026-09-25-science-bridge-disorder-stability</guid>
   <pubDate>Thu, 24 Sep 2026 15:00:00 GMT</pubDate>
   <media:content url="https://priors.kr/posts/figs/2026-09-25-science-bridge-disorder-stability-share.png" medium="image" type="image/png" height="76" width="144"/>
